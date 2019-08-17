@@ -1,7 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# Creating kingdoms
+[
+  { name: 'Space', emblem: 'Gorilla' },
+  { name: 'Land', emblem: 'Panda' },
+  { name: 'Water', emblem: 'Octopus' },
+  { name: 'Ice', emblem: 'Mammoth' },
+  { name: 'Air', emblem: 'Owl' },
+  { name: 'Fire', emblem: 'Dragon' }
+].each do |kingdom|
+  Kingdom.create(name: kingdom[:name], emblem: kingdom[:emblem])
+end
+
+Kingdom.find_by(name: 'Space').update(ruler: true)
