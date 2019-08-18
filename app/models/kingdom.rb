@@ -9,6 +9,10 @@ class Kingdom < ApplicationRecord
     has_many :received_messages, foreign_key: 'receiver_id', inverse_of: :receiver, dependent: :nullify
   end
 
+  validates :name, uniqueness: true
+  validates :emblem, uniqueness: true
+  validates :king, presence: true
+
   def ask_for_allegiance(kingdom, text)
     message = prepare_message(kingdom, text)
     SendEmbassy.new(message).ask_for_allegiance

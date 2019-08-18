@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 2019_08_13_164154) do
   create_table "kingdoms", force: :cascade do |t|
     t.string "name"
     t.string "emblem"
+    t.string "king"
     t.boolean "ruler", default: false
     t.bigint "sovereign_id"
     t.index ["emblem"], name: "index_kingdoms_on_emblem"
+    t.index ["king"], name: "index_kingdoms_on_king"
     t.index ["name"], name: "index_kingdoms_on_name"
     t.index ["sovereign_id"], name: "index_kingdoms_on_sovereign_id"
   end

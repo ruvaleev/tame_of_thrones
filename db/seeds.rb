@@ -1,13 +1,11 @@
 # Creating kingdoms
 [
-  { name: 'Space', emblem: 'Gorilla' },
+  { name: 'Space', emblem: 'Gorilla', king: 'Shan' },
   { name: 'Land', emblem: 'Panda' },
   { name: 'Water', emblem: 'Octopus' },
   { name: 'Ice', emblem: 'Mammoth' },
   { name: 'Air', emblem: 'Owl' },
   { name: 'Fire', emblem: 'Dragon' }
 ].each do |kingdom|
-  Kingdom.create(name: kingdom[:name], emblem: kingdom[:emblem])
+  Kingdom.create(name: kingdom[:name], emblem: kingdom[:emblem], king: kingdom[:king] || FFaker::Name.first_name)
 end
-
-Kingdom.find_by(name: 'Space').update(ruler: true)

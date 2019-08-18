@@ -3,6 +3,7 @@ class CreateKingdoms < ActiveRecord::Migration[5.2]
     create_table :kingdoms do |t|
       t.string :name, unique: true, index: true
       t.string :emblem, unique: true, index: true
+      t.string :king, index: true
       t.boolean :ruler, default: false
     end
 
