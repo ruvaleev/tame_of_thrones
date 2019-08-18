@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+body {
+  background-image: url(background.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.logo img {
+  display: block;
+  margin: auto;
+}
+
+.kingdoms {
+  width: 100%;
+  text-align: center;
+}
+
+.kingdoms img {
+  display: inline-block;
+  margin: 3em;
+}

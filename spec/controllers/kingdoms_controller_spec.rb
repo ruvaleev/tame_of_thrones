@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe KingdomsController, type: :controller do
+  describe 'GET #index' do
+    let(:kingdoms) { create_list(:kingdom, 3) }
+    before { get :index }
+
+    it 'populates an array of all kingdoms' do
+      expect(assigns(:kingdoms)).to match_array(kingdoms)
+    end
+
+    it 'renders index view' do
+      expect(response).to render_template :index
+    end
+  end
+
   describe 'POST #reset_alliances' do
     let!(:messages) { create_list(:message, 5) }
     let!(:sovereign) { create(:kingdom, ruler: true) }
