@@ -60,6 +60,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'shoulda-callback-matchers'
   gem 'shoulda-matchers'
+  gem 'rspec-mocks'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
