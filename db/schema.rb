@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_164154) do
     t.string "name"
     t.string "emblem"
     t.string "king"
+    t.string "avatar"
     t.boolean "ruler", default: false
     t.bigint "sovereign_id"
     t.index ["emblem"], name: "index_kingdoms_on_emblem"

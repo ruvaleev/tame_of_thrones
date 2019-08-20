@@ -13,6 +13,8 @@ class Kingdom < ApplicationRecord
   validates :emblem, uniqueness: true
   validates :king, presence: true
 
+  mount_uploader :avatar, AvatarUploader
+
   def ask_for_allegiance(kingdom, text)
     message = prepare_message(kingdom, text)
     SendEmbassy.new(message).ask_for_allegiance
@@ -22,7 +24,6 @@ class Kingdom < ApplicationRecord
     sent_messages.create(receiver: receiver, body: text)
   end
 end
-
 
 __END__
 arr_of_arrs = File.read("public/uploads/boc-messages.txt")

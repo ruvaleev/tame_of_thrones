@@ -7,5 +7,9 @@
   { name: 'Air', emblem: 'Owl' },
   { name: 'Fire', emblem: 'Dragon' }
 ].each do |kingdom|
-  Kingdom.create(name: kingdom[:name], emblem: kingdom[:emblem], king: kingdom[:king] || FFaker::Name.first_name)
+  k = Kingdom.new(name: kingdom[:name],
+                  emblem: kingdom[:emblem],
+                  king: kingdom[:king] || FFaker::Name.first_name)
+  File.open(Rails.root.join('public', 'avatars', "#{kingdom[:name].downcase}.jpg")) { |f| k.avatar = f }
+  k.save
 end
