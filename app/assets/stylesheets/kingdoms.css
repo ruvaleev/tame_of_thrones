@@ -1,0 +1,35 @@
+
+.kingdoms {
+  width: 100%;
+  text-align: center;
+}
+
+.kingdoms img {
+  display: inline-block;
+  margin: 3em;
+}
+
+#dialogue {
+  margin: 0% 20%;
+  text-align: center;
+  background-image: url(papyrus.jpg);
+}
+
+#dialogue .dialogue_window {
+  width: 100%;
+}
+
+#dialogue .avatar {
+  width: 50%;
+  margin-left: 50%;
+  text-align: center;
+}
+
+#dialogue .avatar img {
+  height: 20em;
+}
+
+#dialogue .message_form {
+  height: 1em;
+}
+

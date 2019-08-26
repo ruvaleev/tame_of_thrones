@@ -23,13 +23,3 @@ body {
   display: block;
   margin: auto;
 }
-
-.kingdoms {
-  width: 100%;
-  text-align: center;
-}
-
-.kingdoms img {
-  display: inline-block;
-  margin: 3em;
-}

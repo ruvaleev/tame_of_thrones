@@ -13,7 +13,8 @@ class Kingdom < ApplicationRecord
   validates :emblem, uniqueness: true
   validates :king, presence: true
 
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :emblem_avatar, AvatarUploader
+  mount_uploader :king_avatar, AvatarUploader
 
   def ask_for_allegiance(kingdom, text)
     message = prepare_message(kingdom, text)
