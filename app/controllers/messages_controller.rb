@@ -2,6 +2,11 @@ class MessagesController < ApplicationController
   before_action :find_sender
   before_action :find_receiver
 
+  def create
+    message = @sender.ask_for_allegiance(@receiver, params[:body])
+    render json: { message: message }
+  end
+
   def greeting
     message = @receiver.greeting(@sender)
     render json: { message: message }
@@ -16,9 +21,5 @@ class MessagesController < ApplicationController
 
   def find_receiver
     @receiver = Kingdom.find(params[:receiver_id])
-  end
-
-  def message_params
-    params.require(:message).permit(:body)
   end
 end

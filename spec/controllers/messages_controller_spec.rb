@@ -1,11 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe MessagesController, type: :controller do
-  describe 'GET #greeting' do
-    let!(:sender) { create(:kingdom, name: 'Space') }
-    let(:receiver) { create(:kingdom) }
+  let!(:sender) { create(:kingdom, name: 'Space') }
+  let(:receiver) { create(:kingdom) }
 
-    it 'returns greeting from receiver to sender' do
+  describe 'POST #create' do
+    let(:body) { 'Some message body' }
+
+    it 'creates new message' do
+      expect do
+        post :create, params: { sender_id: sender, receiver_id: receiver, body: body }, format: :json
+      end.to change(Message, :count).by(1)
+    end
+
+    it 'returns success' do
+      post :create, params: { sender_id: sender, receiver_id: receiver, body: body }, format: :json
+      expect(response).to be_success
+    end
+  end
+
+  describe 'GET #greeting' do
+    it 'returns be_success' do
       get :greeting, params: { receiver_id: receiver }, format: :json
       expect(response).to be_success
     end

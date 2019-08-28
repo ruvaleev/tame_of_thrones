@@ -15,7 +15,7 @@
         receiver_id: receiver_id
       }
       success: (response) ->
-        $('#dialogue .chat').html("<p>#{response.message}</p>")
+        $('#dialogue #chat').html("<p class='right'>#{response.message}</p>")
         $('#dialogue .avatar').html($(".kingdoms .king-avatar[data-id=#{receiver_id}]").clone())
         $('#dialogue .avatar').prepend("<p>#{king} - the King of Kingdom #{name}</p>")
         $('#dialogue').fadeIn();

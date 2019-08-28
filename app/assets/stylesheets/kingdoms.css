@@ -31,7 +31,20 @@
   height: 20em;
 }
 
+#dialogue #chat {
+  position: relative;
+  height: 19em;
+  overflow-y: scroll;
+}
+
 #dialogue .message_form {
   height: 1em;
 }
 
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}

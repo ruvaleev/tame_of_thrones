@@ -18,7 +18,9 @@ class Kingdom < ApplicationRecord
 
   def ask_for_allegiance(kingdom, text)
     message = prepare_message(kingdom, text)
-    SendEmbassy.new(message).ask_for_allegiance
+    agreed = SendEmbassy.new(message).ask_for_allegiance
+    response = agreed ? 'consent' : 'refusal'
+    Response.new(self, kingdom, response).send
   end
 
   def greeting(kingdom)
