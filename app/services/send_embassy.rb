@@ -1,10 +1,10 @@
 class SendEmbassy
   attr_reader :message, :sender, :receiver
 
-  def initialize(message)
+  def initialize(message = nil)
     @message  = message
-    @receiver = message.receiver
-    @sender   = message.sender
+    @receiver = message.try(:receiver)
+    @sender   = message.try(:sender)
   end
 
   def ask_for_allegiance
@@ -13,4 +13,10 @@ class SendEmbassy
     end
     sender.vassals << receiver
   end
+
+  private
+
+  def reject_messages; end
+
+  def success_messages; end
 end

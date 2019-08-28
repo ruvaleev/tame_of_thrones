@@ -21,12 +21,36 @@ class Kingdom < ApplicationRecord
     SendEmbassy.new(message).ask_for_allegiance
   end
 
+  def greeting(kingdom)
+    response = "#{recognize_status(kingdom)}_greeting"
+    Response.new(self, kingdom, response).send
+  end
+
+  private
+
   def prepare_message(receiver, text)
     sent_messages.create(receiver: receiver, body: text)
   end
+
+  def recognize_status(kingdom)
+    if sovereign_of?(kingdom) || vassal_of?(kingdom)
+      'ally'
+    elsif got_messages?(kingdom)
+      'enemy'
+    else
+      'neutral'
+    end
+  end
+
+  def sovereign_of?(kingdom)
+    eql?(kingdom.sovereign)
+  end
+
+  def vassal_of?(kingdom)
+    kingdom.vassals.include?(self)
+  end
+
+  def got_messages?(kingdom)
+    sent_messages.pluck(:receiver_id).concat(received_messages.pluck(:sender_id)).include?(kingdom.id)
+  end
 end
-
-__END__
-arr_of_arrs = File.read("public/uploads/boc-messages.txt")
-
-arr_of_arrs.split("\n")

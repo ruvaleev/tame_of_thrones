@@ -68,21 +68,38 @@ RSpec.describe Kingdom do
     end
   end
 
-  describe '#prepare_message' do
-    let(:prepare_message) { kingdom_sender.prepare_message(kingdom_receiver, message_text) }
+  describe '#greeting' do
+    let(:kingdom) { create(:kingdom) }
+    let(:vassal) { create(:kingdom, sovereign: kingdom) }
+    let(:enemy) { create(:kingdom) }
+    let(:neutral) { create(:kingdom) }
+    let!(:message) { create(:message, sender: enemy, receiver: kingdom) }
 
-    it 'creates new message' do
-      expect { prepare_message }.to change(Message, :count).by(1)
+    let(:ally_response) { instance_double(Response) }
+    let(:enemy_response) { instance_double(Response) }
+    let(:neutral_response) { instance_double(Response) }
+
+    before do
+      allow(Response).to receive(:new).with(kingdom, vassal, 'ally_greeting').and_return(ally_response)
+      allow(ally_response).to receive(:send).and_return('some ally greeting')
+
+      allow(Response).to receive(:new).with(kingdom, enemy, 'enemy_greeting').and_return(enemy_response)
+      allow(enemy_response).to receive(:send).and_return('some enemy greeting')
+
+      allow(Response).to receive(:new).with(kingdom, neutral, 'neutral_greeting').and_return(neutral_response)
+      allow(neutral_response).to receive(:send).and_return('some neutral greeting')
     end
 
-    it 'new message saves receiver' do
-      message = prepare_message
-      expect(message.receiver).to eq kingdom_receiver
+    it 'sends ally_greeting messages to allies' do
+      expect(kingdom.greeting(vassal)).to eq 'some ally greeting'
     end
 
-    it 'new message saves sender' do
-      message = prepare_message
-      expect(message.sender).to eq kingdom_sender
+    it 'sends enemy_greeting messages to enemies' do
+      expect(kingdom.greeting(enemy)).to eq 'some enemy greeting'
+    end
+
+    it 'sends neutral_greeting messages to neutrals' do
+      expect(kingdom.greeting(neutral)).to eq 'some neutral greeting'
     end
   end
 end

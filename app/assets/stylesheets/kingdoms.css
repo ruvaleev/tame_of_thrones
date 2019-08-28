@@ -23,6 +23,8 @@
   width: 50%;
   margin-left: 50%;
   text-align: center;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 #dialogue .avatar img {

@@ -1,5 +1,5 @@
 ready = -> 
-  $('.kingdoms .emblem-avatar').click () ->
+  $('.emblem-avatar').click () ->
     dialogueWindow.open($(this))
 
 
