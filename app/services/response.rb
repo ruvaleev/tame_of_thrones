@@ -24,7 +24,10 @@ class Response
   def choose_file_for_parsing(response)
     {
       'consent' => 'public/uploads/alliance_consent_messages.txt',
-      'refusal' => 'public/uploads/alliance_refusal_messages.txt'
+      'refusal' => 'public/uploads/alliance_refusal_messages.txt',
+      'ally_greeting' => 'public/uploads/ally_greeting_messages.txt',
+      'enemy_greeting' => 'public/uploads/enemy_greeting_messages.txt',
+      'neutral_greeting' => 'public/uploads/neutral_greeting_messages.txt'
     }[response]
   end
 

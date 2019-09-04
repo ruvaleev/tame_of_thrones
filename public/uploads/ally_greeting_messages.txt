@@ -1,0 +1,3 @@
+%{sender_name}% Kingdom always glad to greeting you %{receiver_king}%. How can we help you?
+Oooh, King %{receiver_king}%, old friend! Nice to meet you! How is %{receiver_name}% Kingdom?
+Greetings from the King %{sender_king}%! You're welcome!

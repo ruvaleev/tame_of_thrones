@@ -1,0 +1,12 @@
+table.dialogue_window
+  tr
+    td
+      . id='chat'
+    td.avatar rowspan='2'
+  tr
+    td.message_form
+      = form_with(url: "/messages", method: "post", id: 'messages_form') do |f|
+        = f.text_field :body
+        = f.hidden_field :sender_id, value: Kingdom.find_by_name('Space').id
+        = f.hidden_field :receiver_id
+        = f.submit
