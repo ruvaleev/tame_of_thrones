@@ -20,15 +20,11 @@
         $('#dialogue .avatar').prepend("<p>#{king} - the King of Kingdom #{name}</p>")
         $('#dialogue').fadeIn();
     
-    #   receiver_id = elem.data('id')
-    #   $.ajax
-    #     url: '/begin_dialogue',
-    #     type: 'GET',
-    #     beforeSend: (xhr) -> 
-    #       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-    #     data: {
-    #       receiver_id: receiver_id
-    #     }
+@audio =
+  play: (source) ->
+    audio = new Audio()
+    audio.src = source
+    audio.autoplay = true
 
 
       

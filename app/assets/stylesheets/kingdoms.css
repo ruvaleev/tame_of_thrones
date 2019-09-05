@@ -7,12 +7,69 @@
 .kingdoms img {
   display: inline-block;
   margin: 3em;
+  height: 8em;
+}
+
+.hidden {
+  display: none;
 }
 
 #dialogue {
   margin: 0% 20%;
   text-align: center;
   background-image: url(papyrus.jpg);
+}
+
+#allies {
+  background-image: url(papyrus.jpg);
+  width: 7em;
+  float: left;
+  position: fixed;
+  top: 2em;
+  text-align: center;
+  height: calc(100% - 12em);
+  overflow-y: scroll;
+}
+
+#allies span {
+  font-size: 2em;
+  font-weight: bold;
+  display: block;
+}
+
+#allies img {
+  height: 5em;
+  margin: 0.7em;
+}
+
+#reset_button {
+  height: 7em;
+  position: fixed;
+  bottom: 2em;
+  cursor: pointer;
+  animation-name: attention;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#reset_button:active {
+  animation-name: click;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+}
+
+@keyframes attention {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes click {
+  100% {
+    transform: translateY(+10px);
+  }
 }
 
 #dialogue .dialogue_window {

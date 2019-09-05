@@ -16,11 +16,20 @@ class Kingdom < ApplicationRecord
   mount_uploader :emblem_avatar, AvatarUploader
   mount_uploader :king_avatar, AvatarUploader
 
+  GREAT_HOUSES = [
+    { name: 'Space', emblem: 'Gorilla', king: 'Shan' },
+    { name: 'Land', emblem: 'Panda' },
+    { name: 'Water', emblem: 'Octopus' },
+    { name: 'Ice', emblem: 'Mammoth' },
+    { name: 'Air', emblem: 'Owl' },
+    { name: 'Fire', emblem: 'Dragon' }
+  ].freeze
+
   def ask_for_allegiance(kingdom, text)
     message = prepare_message(kingdom, text)
     agreed = SendEmbassy.new(message).ask_for_allegiance
     response = agreed ? 'consent' : 'refusal'
-    Response.new(self, kingdom, response).send
+    [response, Response.new(self, kingdom, response).send]
   end
 
   def greeting(kingdom)

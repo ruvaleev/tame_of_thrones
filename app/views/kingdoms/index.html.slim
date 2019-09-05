@@ -1,8 +1,9 @@
 .kingdoms
   - @kingdoms.each do |kingdom|
-    = image_tag(kingdom.emblem_avatar.url, class: "emblem-avatar", data: { id: kingdom.id, name: kingdom.name, king: kingdom.king })
-    .hidden hidden='true'
-      = image_tag(kingdom.king_avatar.url, class: "king-avatar", data: { id: kingdom.id })
-
+    = render kingdom
+. id='allies' 
+  span Allies
+  = render 'allies'
+= image_tag('reset_icon.png', id: 'reset_button')
 . id='dialogue' hidden='true'
   = render 'dialogue'
