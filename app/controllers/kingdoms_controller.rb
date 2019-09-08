@@ -10,6 +10,10 @@ class KingdomsController < ApplicationController
     render json: { head: :ok }
   end
 
+  def reset_kingdoms
+    ReinitializeKingdoms.run
+  end
+
   private
 
   def receiver

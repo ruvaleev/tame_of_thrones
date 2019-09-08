@@ -32,7 +32,8 @@
 }
 
 #allies span {
-  font-size: 2em;
+  font-family: 'game_of_thrones';
+  font-size: 1.5em;
   font-weight: bold;
   display: block;
 }
@@ -42,25 +43,76 @@
   margin: 0.7em;
 }
 
-#reset_button {
+.reset_button {
   height: 7em;
-  position: fixed;
-  bottom: 2em;
   cursor: pointer;
-  animation-name: attention;
+}
+
+#allies_reset_button {
+  animation-name: vertical_move;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
-#reset_button:active {
+#allies_reset_button:active {
   animation-name: click;
   animation-duration: 1s;
   animation-timing-function: ease-in;
 }
 
-@keyframes attention {
+.allies_reset_button {
+  bottom: 0.5em;
+  position: fixed;
+}
+
+.allies_reset_button:after {
+  content: 'Reset';
+  font-family: 'game_of_thrones';
+  text-align: center;
+  display: block;
+}
+
+.kingdoms_reset_button {
+  right: 2em;
+  top: 2em;
+  height: 7em;
+  width: 7em;
+  position: fixed;
+}
+
+#kingdoms_reset_button {
+  animation-name: dragon_dancing;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.kingdoms_reset_button:after {
+  content: 'Reload';
+  font-family: 'game_of_thrones';
+  text-align: center;
+  display: block;
+}
+
+#kingdoms_reset_button:active {
+  animation-name: click;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+}
+
+@font-face {
+  font-family: 'game_of_thrones';
+  src: url('/assets/game_of_thrones.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mason';
+  src: url('/assets/mason_regular.ttf') format('truetype');
+}
+
+@keyframes vertical_move {
   50% {
     transform: translateY(-10px);
   }
@@ -69,6 +121,24 @@
 @keyframes click {
   100% {
     transform: translateY(+10px);
+  }
+}
+
+@keyframes dragon_dancing {
+  0%, 10%, 50%, 60%, 100% {
+    transform: scale(1,1)
+  }
+  5%, 55% {
+    transform: scale(1.1,1.1)
+  }
+  65% {
+    transform: rotate(-30deg)
+  }
+  70% {
+    transform: rotate(30deg)
+  }
+  75% {
+    transform: rotate(0)
   }
 }
 

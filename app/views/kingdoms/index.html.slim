@@ -1,9 +1,11 @@
-.kingdoms
-  - @kingdoms.each do |kingdom|
-    = render kingdom
-. id='allies' 
-  span Allies
-  = render 'allies'
-= image_tag('reset_icon.png', id: 'reset_button')
-. id='dialogue' hidden='true'
+.
+  .kingdoms
+    = render @kingdoms
+  .kingdoms_reset_button
+    = image_tag('reset_icon.png', id: 'kingdoms_reset_button', class: 'reset_button')
+. id='allies'
+  = render 'allies', allies: @allies
+.allies_reset_button
+  = image_tag('reset_icon.png', id: 'allies_reset_button', class: 'reset_button')
+.hidden id='dialogue'
   = render 'dialogue'

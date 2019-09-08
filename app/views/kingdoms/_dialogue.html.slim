@@ -9,4 +9,4 @@ table.dialogue_window
         = f.text_field :body
         = f.hidden_field :sender_id, value: Kingdom.find_by_name('Space').id
         = f.hidden_field :receiver_id
-        = f.submit
+        = f.submit 'Send'

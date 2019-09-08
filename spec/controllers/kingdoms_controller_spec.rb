@@ -39,4 +39,25 @@ RSpec.describe KingdomsController, type: :controller do
       expect { subject }.to change { sovereign.reload.ruler }.from(true).to(false)
     end
   end
+
+  describe 'POST #reset_kingdoms' do
+    let!(:messages) { create_list(:message, 5) }
+    let!(:sovereign) { create(:kingdom, ruler: true) }
+    let!(:vassals) { create_list(:kingdom, 9, sovereign: sovereign) }
+
+    subject { post :reset_kingdoms, format: :js }
+
+    it 'destroys all messages' do
+      expect { subject }.to change(Message, :count).from(5).to(0)
+    end
+
+    it 'destroys old kingdoms' do
+      subject
+      expect(Kingdom.find_by(id: sovereign.id)).to be nil
+    end
+
+    it 'creates new kingdoms from Great Houses' do
+      expect { subject }.to change { Kingdom.count }.to(6)
+    end
+  end
 end

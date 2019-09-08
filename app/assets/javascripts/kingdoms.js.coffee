@@ -1,5 +1,5 @@
 ready = -> 
-  $('.emblem-avatar').click () ->
+  $('.kingdoms').on 'click', '.emblem-avatar', () ->
     dialogueWindow.open($(this))
 
   $('#messages_form').on 'submit', (e) ->
@@ -32,7 +32,7 @@ ready = ->
         else
           audio.play('sounds/they_refused.mp3')
 
-  $('#reset_button').click () ->
+  $('#allies_reset_button').click () ->
     audio.play('sounds/gong.mp3')
     $('#allies').hide()
     $.ajax
@@ -44,6 +44,16 @@ ready = ->
       success: (response) ->
         $('#allies img').hide()
         $('#allies').fadeIn()
-    
+
+  $('#kingdoms_reset_button').click () ->
+    audio.play('sounds/gong.mp3')
+    $('.kingdoms').hide()
+    $('#dialogue').hide()
+    $('#allies img').fadeOut()
+    $.ajax
+      url: '/reset_kingdoms',
+      type: 'POST',
+      beforeSend: (xhr) -> 
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
 
 $(document).on('turbolinks:load', ready)
