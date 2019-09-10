@@ -3,10 +3,16 @@ require 'rails_helper'
 RSpec.describe KingdomsController, type: :controller do
   describe 'GET #index' do
     let(:kingdoms) { create_list(:kingdom, 3) }
+    let(:space_kingdom) { create(:kingdom, name: 'Space') }
+    let!(:vassal) { create(:kingdom, sovereign: space_kingdom) }
     before { get :index }
 
     it 'populates an array of all kingdoms' do
-      expect(assigns(:kingdoms)).to match_array(kingdoms)
+      expect(assigns(:kingdoms)).to match_array(kingdoms.concat([space_kingdom, vassal]))
+    end
+
+    it "populates an array of all Kingdom Space's vassals" do
+      expect(assigns(:allies)).to match_array([vassal])
     end
 
     it 'renders index view' do
@@ -31,6 +37,27 @@ RSpec.describe KingdomsController, type: :controller do
 
     it 'nullifies ruler field for all kingdoms' do
       expect { subject }.to change { sovereign.reload.ruler }.from(true).to(false)
+    end
+  end
+
+  describe 'POST #reset_kingdoms' do
+    let!(:messages) { create_list(:message, 5) }
+    let!(:sovereign) { create(:kingdom, ruler: true) }
+    let!(:vassals) { create_list(:kingdom, 9, sovereign: sovereign) }
+
+    subject { post :reset_kingdoms, format: :js }
+
+    it 'destroys all messages' do
+      expect { subject }.to change(Message, :count).from(5).to(0)
+    end
+
+    it 'destroys old kingdoms' do
+      subject
+      expect(Kingdom.find_by(id: sovereign.id)).to be nil
+    end
+
+    it 'creates new kingdoms from Great Houses' do
+      expect { subject }.to change { Kingdom.count }.to(6)
     end
   end
 end

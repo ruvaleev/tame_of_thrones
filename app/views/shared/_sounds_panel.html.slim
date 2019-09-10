@@ -1,0 +1,10 @@
+.rules
+  = image_tag('scroll.png', id: 'rules')
+.sounds
+  = image_tag('sounds_on.png', id: 'sounds_on')
+  = image_tag('sounds_off.png', id: 'sounds_off', class: 'hidden')
+.music
+  = image_tag('music_on.png', id: 'music_on')
+  = image_tag('music_off.png', id: 'music_off', class: 'hidden')
+= audio_tag('main_theme.mp3', autoplay: true, controls: true, loop: true, class: 'hidden', id: 'music')
+= audio_tag('throne_is_mine.mp3', autoplay: false, controls: true, loop: true, class: 'hidden', id: 'final_music')

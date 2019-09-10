@@ -1,0 +1,4 @@
+$('.kingdoms').html('<%= j render 'kingdoms' %>')
+$('#allies').html('<%= j render 'allies' %>')
+$('#dialogue #sender_id').val('<%= Kingdom.find_by_name('Space').id %>')
+$('.kingdoms').fadeIn()

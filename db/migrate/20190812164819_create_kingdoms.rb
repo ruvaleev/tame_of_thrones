@@ -7,6 +7,7 @@ class CreateKingdoms < ActiveRecord::Migration[5.2]
       t.string :emblem_avatar
       t.string :king_avatar
       t.boolean :ruler, default: false
+      t.integer :vassals_count, default: 0
     end
 
     add_reference :kingdoms, :sovereign, foreign_key: { to_table: :kingdoms }

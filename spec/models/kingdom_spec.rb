@@ -18,18 +18,15 @@ RSpec.describe Kingdom do
   end
   it { should validate_uniqueness_of(:name) }
   it { should validate_uniqueness_of(:emblem) }
+  it { should validate_uniqueness_of(:ruler).allow_blank }
   it { should validate_presence_of(:king) }
 
   let(:kingdom_sender) { create(:kingdom) }
   let(:kingdom_receiver) { create(:kingdom) }
-  let(:message_text) { FFaker::Lorem.sentence }
 
   describe '#ask_allegiance' do
     context "message containing receiver's emblem" do
-      let(:correct_message) do
-        message_text[rand(message_text.length - 1)] = kingdom_receiver.emblem.split('').sort_by { rand }.join
-        message_text
-      end
+      let(:correct_message) { correct_message_to(kingdom_receiver) }
 
       let(:ask_for_allegiance) { kingdom_sender.ask_for_allegiance(kingdom_receiver, correct_message) }
 
@@ -47,10 +44,7 @@ RSpec.describe Kingdom do
     end
 
     context "message not containing receiver's emblem" do
-      let(:incorrect_message) do
-        message = FFaker::Lorem.sentence
-        message.delete(kingdom_receiver.emblem.last)
-      end
+      let(:incorrect_message) { incorrect_message_to(kingdom_receiver) }
 
       let(:ask_for_allegiance) { kingdom_sender.ask_for_allegiance(kingdom_receiver, incorrect_message) }
 
@@ -100,6 +94,19 @@ RSpec.describe Kingdom do
 
     it 'sends neutral_greeting messages to neutrals' do
       expect(kingdom.greeting(neutral)).to eq 'some neutral greeting'
+    end
+  end
+
+  describe '#ruler' do
+    let(:ruler) { create(:kingdom, ruler: true) }
+
+    it 'returns nil if there is no ruler' do
+      expect(described_class.ruler).to eq nil
+    end
+
+    it 'returns Kingdom with ruler flag true' do
+      ruler
+      expect(described_class.ruler).to eq ruler
     end
   end
 end
