@@ -266,7 +266,7 @@
   font-family: 'mason';
   font-size: 2em;
   text-align: center;
-  background-image: url('papyrus.jpg');
+  background-image: asset-data-url('papyrus.jpg');
   position: fixed;
   overflow-y: scroll;
 }
