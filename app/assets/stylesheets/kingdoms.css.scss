@@ -18,7 +18,7 @@
   margin: 0% 20%;
   width: 60%;
   text-align: center;
-  background-image: url('papyrus.jpg');
+  background-image: asset-data-url('papyrus.jpg');
   bottom: 1em;
   position: fixed;
   height: calc(100% - 17em);
@@ -26,7 +26,7 @@
 }
 
 #allies {
-  background-image: url('papyrus.jpg');
+  background-image: asset-data-url('papyrus.jpg');
   width: 7em;
   float: left;
   position: fixed;
@@ -143,12 +143,12 @@
 
 @font-face {
   font-family: 'game_of_thrones';
-  src: url('/assets/game_of_thrones.ttf') format('truetype');
+  src: asset-data-url('/assets/game_of_thrones.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'mason';
-  src: url('/assets/mason_regular.ttf') format('truetype');
+  src: asset-data-url('/assets/mason_regular.ttf') format('truetype');
 }
 
 @keyframes vertical_move {
@@ -239,7 +239,7 @@
 .modal .final_story {
   font-size: 2em;
   font-family: 'game_of_thrones';
-  background-image: url('papyrus.jpg');
+  background-image: asset-data-url('papyrus.jpg');
   height: 100%;
   max-width: 40%;
   width: 100vh;
