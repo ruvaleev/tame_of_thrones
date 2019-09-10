@@ -143,12 +143,12 @@
 
 @font-face {
   font-family: 'game_of_thrones';
-  src: asset-data-url('/assets/game_of_thrones.ttf') format('truetype');
+  src: font-url('/assets/game_of_thrones.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'mason';
-  src: asset-data-url('/assets/mason_regular.ttf') format('truetype');
+  src: font-url('/assets/mason_regular.ttf') format('truetype');
 }
 
 @keyframes vertical_move {
