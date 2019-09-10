@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Kingdom < ApplicationRecord
-  belongs_to :sovereign, class_name: 'Kingdom', optional: true
+  belongs_to :sovereign, class_name: 'Kingdom', optional: true, counter_cache: :vassals_count
   has_many :vassals, class_name: 'Kingdom', foreign_key: 'sovereign_id', inverse_of: :sovereign, dependent: :nullify
 
   with_options class_name: 'Message' do
@@ -12,6 +12,7 @@ class Kingdom < ApplicationRecord
   validates :name, uniqueness: true
   validates :emblem, uniqueness: true
   validates :king, presence: true
+  validates :ruler, uniqueness: true, allow_blank: true
 
   mount_uploader :emblem_avatar, AvatarUploader
   mount_uploader :king_avatar, AvatarUploader
@@ -25,16 +26,28 @@ class Kingdom < ApplicationRecord
     { name: 'Fire', emblem: 'Dragon' }
   ].freeze
 
+  MINIMUM_FOR_VICTORY = 3
+
   def ask_for_allegiance(kingdom, text)
     message = prepare_message(kingdom, text)
     agreed = SendEmbassy.new(message).ask_for_allegiance
-    response = agreed ? 'consent' : 'refusal'
-    [response, Response.new(self, kingdom, response).send]
+    if agreed
+      response = 'consent'
+      new_king = elect_ruler
+    else
+      response = 'refusal'
+      new_king = false
+    end
+    [response, Response.new(self, kingdom, response).send, new_king]
   end
 
   def greeting(kingdom)
     response = "#{recognize_status(kingdom)}_greeting"
     Response.new(self, kingdom, response).send
+  end
+
+  def self.ruler
+    find_by(ruler: true)
   end
 
   private
@@ -63,5 +76,17 @@ class Kingdom < ApplicationRecord
 
   def got_messages?(kingdom)
     sent_messages.pluck(:receiver_id).concat(received_messages.pluck(:sender_id)).include?(kingdom.id)
+  end
+
+  def elect_ruler
+    return if ruler?
+
+    update(ruler: true) if can_be_ruler?
+  end
+
+  def can_be_ruler?
+    reload
+    vassals_count > Kingdom.ruler.try(:vassals_count).to_i &&
+      vassals_count >= MINIMUM_FOR_VICTORY
   end
 end

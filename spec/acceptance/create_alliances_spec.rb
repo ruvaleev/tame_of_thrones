@@ -11,7 +11,7 @@ feature 'Create alliances', '
 
   before do
     visit root_path
-    find("img[data-name=#{kingdom_receiver.name}]").click
+    find(".kingdoms img[data-name=#{kingdom_receiver.name}]").click
   end
 
   scenario 'opens dialogue window', js: true do

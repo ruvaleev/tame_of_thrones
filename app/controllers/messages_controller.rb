@@ -3,8 +3,13 @@ class MessagesController < ApplicationController
   before_action :find_receiver
 
   def create
-    response, message = @sender.ask_for_allegiance(@receiver, params[:body])
-    render json: { message: message, response: response, receiver_id: @receiver.id }
+    response, message, new_king = @sender.ask_for_allegiance(@receiver, params[:body])
+    render json: { message: message,
+                   response: response,
+                   receiver_id: @receiver.id,
+                   new_king: new_king,
+                   kings_name: @sender.king,
+                   kingdoms_name: @sender.name }
   end
 
   def greeting

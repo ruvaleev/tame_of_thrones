@@ -13,10 +13,4 @@ class SendEmbassy
     end
     sender.vassals << receiver
   end
-
-  private
-
-  def reject_messages; end
-
-  def success_messages; end
 end

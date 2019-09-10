@@ -9,3 +9,11 @@
   = image_tag('reset_icon.png', id: 'allies_reset_button', class: 'reset_button')
 .hidden id='dialogue'
   = render 'dialogue'
+.throne
+  = render 'shared/throne'
+.sounds_panel
+  = render 'shared/sounds_panel'
+.modal.hidden id='throne_is_taken'
+  .final_story
+  .final_throne = image_tag('throne_is_taken.gif')
+= render 'shared/rules'

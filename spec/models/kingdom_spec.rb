@@ -18,6 +18,7 @@ RSpec.describe Kingdom do
   end
   it { should validate_uniqueness_of(:name) }
   it { should validate_uniqueness_of(:emblem) }
+  it { should validate_uniqueness_of(:ruler).allow_blank }
   it { should validate_presence_of(:king) }
 
   let(:kingdom_sender) { create(:kingdom) }
@@ -93,6 +94,19 @@ RSpec.describe Kingdom do
 
     it 'sends neutral_greeting messages to neutrals' do
       expect(kingdom.greeting(neutral)).to eq 'some neutral greeting'
+    end
+  end
+
+  describe '#ruler' do
+    let(:ruler) { create(:kingdom, ruler: true) }
+
+    it 'returns nil if there is no ruler' do
+      expect(described_class.ruler).to eq nil
+    end
+
+    it 'returns Kingdom with ruler flag true' do
+      ruler
+      expect(described_class.ruler).to eq ruler
     end
   end
 end

@@ -1,0 +1,14 @@
+- ruler = Kingdom.ruler 
+- if ruler.nil?
+  p Throne is vacant
+  = image_tag('empty_throne.png', id: 'empty_throne')
+  = image_tag('throne.png', id: 'throne', class: 'hidden')
+- else
+  p
+    = ruler.king
+    br
+    = "King of #{ruler.name}"
+    br
+    = "is the Ruler"
+  = image_tag('throne.png', id: 'throne')
+  = image_tag('empty_throne.png', id: 'empty_throne', class: 'hidden')
