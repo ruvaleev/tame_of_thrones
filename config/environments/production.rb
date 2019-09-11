@@ -4,6 +4,8 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   config.assets.precompile += %w(.ttf)
+  config.serve_static_assets = true
+
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
