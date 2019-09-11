@@ -14,9 +14,6 @@ class Kingdom < ApplicationRecord
   validates :king, presence: true
   validates :ruler, uniqueness: true, allow_blank: true
 
-  mount_uploader :emblem_avatar, AvatarUploader
-  mount_uploader :king_avatar, AvatarUploader
-
   GREAT_HOUSES = [
     { name: 'Space', emblem: 'Gorilla', king: 'Shan' },
     { name: 'Land', emblem: 'Panda' },
