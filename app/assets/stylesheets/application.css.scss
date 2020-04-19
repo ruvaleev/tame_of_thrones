@@ -14,12 +14,164 @@
  *= require_self
  */
 body {
-  background-image: asset-data-url('background.jpg');
+  background-image: asset-data-url('background.png');
   background-size: 100%;
   background-repeat: no-repeat;
+  font-family: 'baltica';
 }
 
 .logo img {
   display: block;
-  margin: auto;
+  margin: 11% 0;
+  width: 90%;
+}
+
+.left_side {
+  margin-left: 4.5%;
+  width: 45.5%;
+  float: left;
+  filter: none;
+  transition:
+    filter 1s;
+}
+
+.right_side {
+  width: 50%;
+  float: right;
+}
+
+.rules {
+  color: white;
+  font-size: 0.94em;
+}
+
+.rules p {
+  margin: 2% 25% 0 0;
+}
+
+.call_to_action {
+  height: 65px;
+}
+
+.call_to_action img {
+  height: 95%;
+  margin-right: 2.5%;
+  float: left;
+}
+
+.call_to_action div {
+  display: inline-block;
+  font-size: 1.5em;
+  line-height: 1.4em;
+}
+
+.buttons {
+  margin-top: 12%;
+}
+
+.buttons button {
+  width: 10em;
+  height: 3.5em;
+  margin-right: 2.1em;
+  font-size: 0.9em;
+  font-family: 'baltica';
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+
+.tunes {
+  margin-top: 6%;
+  margin-bottom: 20%;
+}
+
+.tunes img {
+  margin-right: 3%;
+  height: 25px;
+}
+
+.lang_panel {
+  width: 6.5em;
+  height: 3em;
+  line-height: 3em;
+  background-image: asset-data-url('lang_panel_background.png');
+  background-size: 100%;
+}
+
+.lang_panel div {
+  width: 3.25em;
+  text-align: center;
+  color: white;
+  display: inline-block;
+}
+
+div.circle {
+  width: 54%;
+  margin-top: 4%;
+  margin-left: -6%;
+  position: absolute;
+  transition:
+    width 1s,
+    margin-top 1s,
+    margin-left 1s;
+}
+
+.circle img {
+  display: block;
+  position: absolute;
+  width: 14%;
+}
+
+.circle img.circle {
+  width: 100%;
+  position: relative;
+  display: inline;
+}
+
+.circle img.center {
+  margin-top: -65.84%;
+  left: 32%;
+  width: 36.2%;
+}
+
+.circle img.circle_emblem_0 {
+  margin-top: -85%;
+  margin-left: 43%;
+}
+
+.circle img.circle_emblem_1 {
+  margin-top: -69%;
+  margin-left: 71%;
+}
+
+.circle img.circle_emblem_2 {
+  margin-top: -36.4%;
+  margin-left: 71%;
+}
+
+.circle img.circle_emblem_3 {
+  margin-top: -20%;
+  margin-left: 43%;
+}
+
+.circle img.circle_emblem_4 {
+  margin-top: -36.4%;
+  margin-left: 15%;
+}
+
+.circle img.circle_emblem_5 {
+  margin-top: -69%;
+  margin-left: 15%;
+}
+
+/*
+По итогу анимации div.circle
+    width: 62%;
+    margin-top: 0%;
+    margin-left: -30%;
+
+*/
+
+@font-face {
+  font-family: 'baltica';
+  src: font-url('/assets/baltica_allfont_ru.ttf');
 }

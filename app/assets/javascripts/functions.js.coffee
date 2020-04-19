@@ -121,3 +121,17 @@
       modal.style.display = "none"
       document.querySelector("#final_music").pause()
       document.querySelector("#music").play() if $('#music_on').is(':visible')
+
+@maximize_circle = (elem) ->
+  elem.style.width = '62%';
+  elem.style.marginTop = '0%';
+  elem.style.marginLeft = '-30%';
+  $(elem).data('minimized', false);
+  document.getElementById('left_side').style.filter = 'blur(1px)';
+
+@minimize_circle = (elem) ->
+  elem.style.width = '54%';
+  elem.style.marginTop = '4%';
+  elem.style.marginLeft = '-6%';
+  $(elem).data('minimized', true);
+  document.getElementById('left_side').style.filter = 'none';

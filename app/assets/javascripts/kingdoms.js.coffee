@@ -1,5 +1,12 @@
 ready = -> 
   
+  $('div.circle').click () ->
+    maximize_circle(this) if $(this).data('minimized')
+
+  $(document).mouseup (e) ->
+    circle = document.getElementById('circle');
+    minimize_circle(circle) if $(circle).has(e.target).length == 0
+
   $('.sounds_panel .music').click () ->
     toggleMusic()
 

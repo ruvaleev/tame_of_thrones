@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -12,6 +14,7 @@ module TameOfThrones
     config.load_defaults 5.2
     config.autoload_paths << Rails.root.join('services')
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    I18n.available_locales = %i[en ru]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

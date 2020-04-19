@@ -1,19 +1,27 @@
-.
-  .kingdoms
-    = render @kingdoms
-  .kingdoms_reset_button
-    = image_tag('reset_icon.png', id: 'kingdoms_reset_button', class: 'reset_button')
-. id='allies'
-  = render 'allies', allies: @allies
-.allies_reset_button
-  = image_tag('reset_icon.png', id: 'allies_reset_button', class: 'reset_button')
-.hidden id='dialogue'
-  = render 'dialogue'
-.throne
-  = render 'shared/throne'
-.sounds_panel
-  = render 'shared/sounds_panel'
-.modal.hidden id='throne_is_taken'
-  .final_story
-  .final_throne = image_tag('throne_is_taken.gif')
-= render 'shared/rules'
+.left_side#left_side
+  .logo
+    = image_tag('logo.png')
+  .rules
+    .call_to_action
+      = image_tag('sword_and_shield.png')
+      . 
+        = I18n.t('.choose_allies')
+        br
+        = I18n.t('.and_conquer_southerost')
+    p = I18n.t('.rules_first_part')
+    p = I18n.t('.rules_second_part')
+  .buttons
+    = button_tag(I18n.t('.reload'))
+    = button_tag(I18n.t('.reset'))
+  .tunes
+    = image_tag('music_on.png')
+    = image_tag('voice_on.png')
+    .lang_panel
+      . en
+      . ru
+.right_side
+  .circle#circle data-minimized='true'
+    = image_tag('circle.png', class: 'circle')
+    = image_tag('center_throne', class: 'center')
+    - @kingdoms.each_with_index do |kingdom, index|
+      = image_tag(kingdom.emblem_avatar, class: "circle_emblem_#{index}")
