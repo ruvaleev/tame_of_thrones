@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MessagesController, type: :controller do
@@ -20,7 +22,7 @@ RSpec.describe MessagesController, type: :controller do
   end
 
   describe 'GET #greeting' do
-    it 'returns be_success' do
+    it 'returns success' do
       get :greeting, params: { receiver_id: receiver }, format: :json
       expect(response).to be_success
     end

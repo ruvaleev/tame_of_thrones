@@ -6,15 +6,15 @@ RSpec.describe Kingdom do
   it { should belong_to(:sovereign).class_name('Kingdom').optional }
   it do
     should have_many(:vassals).class_name('Kingdom').with_foreign_key('sovereign_id')
-      .inverse_of(:sovereign).dependent(:nullify)
+                              .inverse_of(:sovereign).dependent(:nullify)
   end
   it do
     should have_many(:sent_messages).class_name('Message').with_foreign_key('sender_id')
-      .inverse_of(:sender).dependent(:destroy)
+                                    .inverse_of(:sender).dependent(:destroy)
   end
   it do
     should have_many(:received_messages).class_name('Message').with_foreign_key('receiver_id')
-      .inverse_of(:receiver).dependent(:nullify)
+                                        .inverse_of(:receiver).dependent(:nullify)
   end
   it { should validate_uniqueness_of(:name) }
   it { should validate_uniqueness_of(:emblem) }
@@ -97,7 +97,7 @@ RSpec.describe Kingdom do
     end
   end
 
-  describe '#ruler' do
+  describe '.ruler' do
     let(:ruler) { create(:kingdom, ruler: true) }
 
     it 'returns nil if there is no ruler' do
@@ -109,4 +109,53 @@ RSpec.describe Kingdom do
       expect(described_class.ruler).to eq ruler
     end
   end
+
+  describe '#translated_name' do
+    context 'with English locale' do
+      let(:name) { english_name_translates.keys.sample.capitalize }
+      let(:kingdom) { create(:kingdom, name: name) }
+
+      it "returns correctly translated kingdom's name" do
+        expect(kingdom.translated_name).to eq english_name_translates[name.downcase]
+      end
+    end
+    context 'with Russian locale' do
+      let(:name) { russian_name_translates.keys.sample.capitalize }
+      let(:kingdom) { create(:kingdom, name: name) }
+
+      it "returns correctly translated kingdom's name" do
+        I18n.locale = :ru
+        expect(kingdom.translated_name).to eq russian_name_translates[name.downcase]
+      end
+    end
+    context 'when translation not found' do
+      let(:kingdom) { create(:kingdom) }
+
+      it "returns kingdom's name" do
+        expect(kingdom.translated_name).to eq kingdom.name
+      end
+    end
+  end
+end
+
+def english_name_translates
+  {
+    space: 'Kingdom Space',
+    land: 'Kingdom Land',
+    water: 'Kingdom Water',
+    ice: 'Kingdom Ice',
+    air: 'Kingdom Air',
+    fire: 'Kingdom Fire'
+  }
+end
+
+def russian_name_translates
+  {
+    space: 'Королевства Простора',
+    land: 'Королевства Земли',
+    water: 'Королевства Воды',
+    ice: 'Королевства Льда',
+    air: 'Королевства Воздуха',
+    fire: 'Королевства Огня'
+  }
 end

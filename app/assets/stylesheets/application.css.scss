@@ -12,12 +12,14 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
+
 body {
+  font-family: 'baltica';
   background-image: asset-data-url('background.png');
   background-size: 100%;
   background-repeat: no-repeat;
-  font-family: 'baltica';
+  margin: 0;
 }
 
 .logo img {
@@ -35,9 +37,12 @@ body {
     filter 1s;
 }
 
-.right_side {
-  width: 50%;
+.container {
+  width: 100%;
   float: right;
+  position: absolute;
+  height: 808px;
+  overflow: scroll;
 }
 
 .rules {
@@ -77,6 +82,10 @@ body {
   font-family: 'baltica';
   background-color: rgba(0, 0, 0, 0);
   color: white;
+  cursor: pointer;
+  &:hover {
+    border-color: #e16334;
+  }
 }
 
 .tunes {
@@ -87,6 +96,7 @@ body {
 .tunes img {
   margin-right: 3%;
   height: 25px;
+  cursor: pointer;
 }
 
 .lang_panel {
@@ -102,74 +112,33 @@ body {
   text-align: center;
   color: white;
   display: inline-block;
+  cursor: pointer;
 }
 
-div.circle {
-  width: 54%;
-  margin-top: 4%;
-  margin-left: -6%;
-  position: absolute;
-  transition:
-    width 1s,
-    margin-top 1s,
-    margin-left 1s;
+.lang_panel div a {
+  color: white;
+  text-decoration: none;
 }
 
-.circle img {
-  display: block;
-  position: absolute;
-  width: 14%;
+.right {
+  text-align: right;
 }
 
-.circle img.circle {
-  width: 100%;
-  position: relative;
-  display: inline;
+.left {
+  text-align: left;
 }
 
-.circle img.center {
-  margin-top: -65.84%;
-  left: 32%;
-  width: 36.2%;
+.orange {
+  color: #e16334;
 }
 
-.circle img.circle_emblem_0 {
-  margin-top: -85%;
-  margin-left: 43%;
+.white {
+  color: white;
 }
 
-.circle img.circle_emblem_1 {
-  margin-top: -69%;
-  margin-left: 71%;
+.hidden {
+  display: none;
 }
-
-.circle img.circle_emblem_2 {
-  margin-top: -36.4%;
-  margin-left: 71%;
-}
-
-.circle img.circle_emblem_3 {
-  margin-top: -20%;
-  margin-left: 43%;
-}
-
-.circle img.circle_emblem_4 {
-  margin-top: -36.4%;
-  margin-left: 15%;
-}
-
-.circle img.circle_emblem_5 {
-  margin-top: -69%;
-  margin-left: 15%;
-}
-
-/*
-По итогу анимации div.circle
-    width: 62%;
-    margin-top: 0%;
-    margin-left: -30%;
-
-*/
 
 @font-face {
   font-family: 'baltica';

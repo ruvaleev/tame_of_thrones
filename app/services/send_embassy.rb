@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SendEmbassy
   attr_reader :message, :sender, :receiver
 

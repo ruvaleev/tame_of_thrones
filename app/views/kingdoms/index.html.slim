@@ -1,27 +1,57 @@
-.left_side#left_side
-  .logo
-    = image_tag('logo.png')
-  .rules
-    .call_to_action
-      = image_tag('sword_and_shield.png')
-      . 
-        = I18n.t('.choose_allies')
-        br
-        = I18n.t('.and_conquer_southerost')
-    p = I18n.t('.rules_first_part')
-    p = I18n.t('.rules_second_part')
-  .buttons
-    = button_tag(I18n.t('.reload'))
-    = button_tag(I18n.t('.reset'))
-  .tunes
-    = image_tag('music_on.png')
-    = image_tag('voice_on.png')
-    .lang_panel
-      . en
-      . ru
-.right_side
-  .circle#circle data-minimized='true'
-    = image_tag('circle.png', class: 'circle')
-    = image_tag('center_throne', class: 'center')
-    - @kingdoms.each_with_index do |kingdom, index|
-      = image_tag(kingdom.emblem_avatar, class: "circle_emblem_#{index}")
+.container
+  .left_side#left_side
+    .logo
+      = image_tag('logo.png')
+    .rules
+      .call_to_action
+        = image_tag('sword_and_shield.png')
+        . 
+          = I18n.t('.choose_allies')
+          br
+          = I18n.t('.and_conquer_southerost')
+      p = I18n.t('.rules_first_part')
+      p = I18n.t('.rules_second_part')
+    .buttons
+      = button_tag(I18n.t('.reload'), id: 'reload_button')
+      = button_tag(I18n.t('.reset'), id: 'reset_button')
+    .tunes
+      - %w[music sounds].each do |feature|
+        = image_tag("#{feature}_on.png", class: "#{feature}", id: "#{feature}_on")
+        = image_tag("#{feature}_off.png", class: "#{feature}", id: "#{feature}_off", style: 'display: none')
+      .lang_panel
+        . = I18n.locale == :en ? 'en' : link_to('en', root_path(locale: :en))
+        . = I18n.locale == :ru ? 'ru' : link_to('ru', root_path(locale: :ru))
+      = audio_tag('main_theme.mp3', autoplay: true, controls: true, loop: true, class: 'hidden', id: 'music')
+      = audio_tag('throne_is_mine.mp3', autoplay: false, controls: true, loop: true, class: 'hidden', id: 'final_music')
+  .circle#circle
+    = image_tag('circle_background.png', class: 'circle_background', id: 'circle_background')
+    = image_tag('circle.png', class: 'circle', id: 'circle_image')
+    = image_tag('center', class: 'center_base', id: 'empty_center')
+    = image_tag('central_frame', class: 'central_frame', id: 'central_frame')
+    = image_tag('throne_is_taken', class: 'center_base center congratulations', id: 'throne_is_taken', style: 'display: none')
+    p.congratulations.top.orange style='display: none'
+      = I18n.t('.congratulations_first')
+    p.congratulations.bottom.white style='display: none'
+      = I18n.t('.congratulations_second')
+    - %w[red green].each do |color|
+      = image_tag("#{color}_light_inner", class: 'central_frame inner_light', id: "#{color}_light_inner", style: 'display: none')
+      = image_tag("#{color}_light_outer", class: 'circle_background outer_light', id: "#{color}_light_outer", style: 'display: none')
+    .form style='display: none'
+      = render 'messages/new'
+    #chat
+    .title.orange style='display: none'
+      a.king
+      br
+      = I18n.t('.king_of')
+      br
+      a.name
+    .center
+      = image_tag('center_throne.png', class: 'center center_background')
+      - %w[blue orange red green].each do |color|
+        = image_tag("#{color}_light_cell.png", class: 'light_cell', id: "#{color}_light_cell", style: 'display: none')
+    = render 'kingdoms'
+
+
+
+
+

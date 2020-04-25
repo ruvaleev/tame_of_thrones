@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe KingdomsController, type: :controller do
@@ -12,7 +14,7 @@ RSpec.describe KingdomsController, type: :controller do
     end
 
     it "populates an array of all Kingdom Space's vassals" do
-      expect(assigns(:allies)).to match_array([vassal])
+      expect(assigns(:allies_ids)).to match_array([vassal.id])
     end
 
     it 'renders index view' do
@@ -58,6 +60,11 @@ RSpec.describe KingdomsController, type: :controller do
 
     it 'creates new kingdoms from Great Houses' do
       expect { subject }.to change { Kingdom.count }.to(6)
+    end
+
+    it 'populates an array of all kingdoms' do
+      subject
+      expect(assigns(:kingdoms)).to match_array(Kingdom.all)
     end
   end
 end

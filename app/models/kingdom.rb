@@ -47,6 +47,10 @@ class Kingdom < ApplicationRecord
     find_by(ruler: true)
   end
 
+  def translated_name
+    I18n.t(".#{name.downcase}", default: name)
+  end
+
   private
 
   def prepare_message(receiver, text)

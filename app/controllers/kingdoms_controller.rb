@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class KingdomsController < ApplicationController
-  around_action :switch_locale
-
   def index
-    @kingdoms = Kingdom.all
-    @allies = Kingdom.find_by(name: 'Space').try(:vassals)
+    find_all_kingdoms
+    @allies_ids = Kingdom.find_by(name: 'Space').try(:vassals).try(:pluck, :id)
   end
 
   def reset_alliances
@@ -16,16 +14,18 @@ class KingdomsController < ApplicationController
 
   def reset_kingdoms
     ReinitializeKingdoms.run
+    @allies_ids = []
+    @space_kingdom_id = Kingdom.find_by(name: 'Space').id
+    find_all_kingdoms
   end
 
   private
 
-  def receiver
-    Kingdom.find(params[:receiver_id])
+  def find_all_kingdoms
+    @kingdoms = Kingdom.all
   end
 
-  def switch_locale(&action)
-    locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+  def receiver
+    Kingdom.find(params[:receiver_id])
   end
 end
