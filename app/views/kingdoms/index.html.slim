@@ -15,10 +15,11 @@
       = button_tag(I18n.t('.reload'), id: 'reload_button')
       = button_tag(I18n.t('.reset'), id: 'reset_button')
     .tunes
+      = image_tag('tunes.png', id: 'tunes')
       - %w[music sounds].each do |feature|
         = image_tag("#{feature}_on.png", class: "#{feature}", id: "#{feature}_on")
         = image_tag("#{feature}_off.png", class: "#{feature}", id: "#{feature}_off", style: 'display: none')
-      .lang_panel
+      .lang_panel style='display: none'
         . = I18n.locale == :en ? 'en' : link_to('en', root_path(locale: :en))
         . = I18n.locale == :ru ? 'ru' : link_to('ru', root_path(locale: :ru))
       = audio_tag('main_theme.mp3', autoplay: true, controls: true, loop: true, class: 'hidden', id: 'music')

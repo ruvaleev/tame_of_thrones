@@ -35,6 +35,12 @@ ready = ->
   $('#reload_button').click () ->
     resetKingdoms()
 
+  $('#tunes').click () ->
+    $('.lang_panel').slideToggle()
+    setTimeout ->
+      $('.lang_panel').slideToggle() if $('.lang_panel').is(':visible')
+    ,6000
+
 
 
 

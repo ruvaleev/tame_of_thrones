@@ -7,6 +7,16 @@ feature 'Change language', '
   As User
   I want to be able to change current locale
 ' do
+  scenario 'lang_panel is hidden' do
+    visit root_path
+    expect(page).not_to have_css('.lang_panel', visible: true)
+  end
+  scenario "after click on 'tunes' button lang_panel is shown", js: true do
+    visit root_path
+    find('#tunes').click
+    expect(page).to have_css('.lang_panel', visible: true)
+  end
+
   context 'when current locale :en' do
     before { visit root_path(locale: 'en') }
 
