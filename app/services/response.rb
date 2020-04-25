@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Response
   attr_reader :sender, :receiver, :response
 

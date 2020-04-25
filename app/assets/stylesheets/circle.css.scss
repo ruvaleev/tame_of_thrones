@@ -1,0 +1,316 @@
+div.circle {
+  width: 54%;
+  margin-top: 4%;
+  margin-left: 44%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.circle img {
+  display: block;
+  position: absolute;
+  width: 14%;
+}
+
+#circle_image {
+  width: 100%;
+  position: relative;
+  display: inline;
+  z-index: 100;
+}
+
+.rotating {
+  z-index: 102 !important;
+  animation-name: rotating;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotating {
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.finish_rotating {
+  animation-name: slow_rotating;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0, .26, 0, .95);
+}
+
+@keyframes slow_rotating {
+  0% {
+    transform: rotate(340deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.maximized {
+  animation-name: maximized;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+.minimized {
+  animation-name: minimized;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+@keyframes maximized {
+  100% {
+    width: 90%;
+    margin-top: 0%;
+    margin-left: 5%;
+  }
+}
+
+@keyframes minimized {
+  0% {
+    width: 90%;
+    margin-top: 0%;
+    margin-left: 5%;
+  }
+  100% {
+    width: 54%;
+    margin-top: 4%;
+    margin-left: 44%;
+  }
+}
+
+.circle img.inactive {
+  animation-name: inactive;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+@keyframes inactive {
+  0% {
+    filter: blur(0px) grayscale(0)
+  }
+  50% {
+    filter: blur(1.5px) grayscale(0.5)
+  }
+  100% {
+    filter: blur(3px) grayscale(1)
+  }
+}
+
+.circle img.active {
+  animation-name: active;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+@keyframes active {
+  0% {
+    filter: blur(3px) grayscale(1)
+  }
+  50% {
+    filter: blur(1.5px) grayscale(0.5)
+  }
+  100% {
+    filter: blur(0px) grayscale(0)
+  }
+}
+
+.circle img.circle_background {
+  width: 86%;
+  left: 7%;
+  top: 2%;
+}
+
+.circle div.center, img.center_base {
+  position: absolute;
+  margin-top: -65.84%;
+  left: 32%;
+  width: 36.2%;
+  z-index: 101;
+}
+
+.congratulations {
+  z-index: 104 !important;
+}
+
+p.congratulations {
+  position: absolute;
+  text-align: center;
+  width: 20%;
+  margin-left: 40%;
+}
+
+p.congratulations.top {
+  margin-top: -57%;
+}
+
+p.congratulations.bottom {
+  margin-top: -37%;
+}
+
+.circle img.central_frame {
+  z-index: 103;
+  width: 41%;
+  margin-top: -67.84%;
+  left: 29.5%;
+}
+
+.circle img.inner_light {
+  z-index: 102;
+}
+
+.circle div.center img.center {
+  width: 100%;
+}
+
+.circle img.avatar_in_center {
+  margin-top: -40%;
+  margin-left: 40%;
+  width: 20%;
+  z-index: 101;
+}
+
+.circle .title {
+  margin-top: -39.7%;
+  line-height: 124%;
+  margin-left: 34%;
+  max-width: 7em;
+  font-size: 0.8em;
+  text-align: right;
+  z-index: 102;
+  position: absolute;
+}
+
+.circle img.emblem {
+  cursor: pointer;
+  z-index: 101;
+  transition: width 1s;
+}
+
+.circle img.circle_emblem_0 {
+  margin-top: -85%;
+  margin-left: 43%;
+}
+
+.circle img.circle_emblem_1 {
+  margin-top: -69%;
+  margin-left: 71%;
+}
+
+.circle img.circle_emblem_2 {
+  margin-top: -36.4%;
+  margin-left: 71%;
+}
+
+.circle img.circle_emblem_3 {
+  margin-top: -20%;
+  margin-left: 43%;
+}
+
+.circle img.circle_emblem_4 {
+  margin-top: -36.4%;
+  margin-left: 15%;
+}
+
+.circle img.circle_emblem_5 {
+  margin-top: -69%;
+  margin-left: 15%;
+}
+
+.circle img.light_cell {
+  width: 38%;
+  height: 32%;
+}
+
+.circle img.light_cell_0 {
+  margin-top: -87.7%;
+  margin-left: 31%;
+}
+
+.circle img.light_cell_1 {
+  margin-top: -73%;
+  margin-left: 56%;
+  transform: rotate(60deg);
+}
+
+.circle img.light_cell_2 {
+  margin-top: -45.5%;
+  margin-left: 56%;
+  transform: rotate(120deg);
+}
+
+.circle img.light_cell_3 {
+  margin-top: -31%;
+  margin-left: 31%;
+  transform: rotate(180deg);
+}
+
+.circle img.light_cell_4 {
+  margin-top: -45.5%;
+  margin-left: 6%;
+  transform: rotate(-120deg);
+}
+
+.circle img.light_cell_5 {
+  margin-top: -74%;
+  margin-left: 6.7%;
+  transform: rotate(-60deg);
+}
+
+.circle form#messages_form {
+  position: absolute;
+  margin-left: 55%;
+  margin-top: -39.5%;
+  z-index: 103;
+}
+
+.circle form#messages_form input#body {
+  width: 6em;
+  height: 1.5em;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: #3e4243;
+  border-width: 0.1px;
+  border-top-color: gray;
+  color: white;
+  font-family: 'baltica';
+  float: left;
+}
+
+.circle form#messages_form input#submit_button {
+  float: right;
+}
+
+#chat {
+  width: 30%;
+  position: absolute;
+  overflow-y: scroll;
+  max-height: 15%;
+  margin-top: -54%;
+  margin-left: 36%;
+  z-index: 103;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color :white;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  background-color:#4c4c4c;
+}
+
+#chat p {
+  margin: 0.1em 1em 0.1em 0;
+}
+
+#chat hr {
+  background-color: #e16334;
+  border: 0;
+  height: 1px;
+  width: 2em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}

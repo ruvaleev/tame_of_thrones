@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class KingdomsController < ApplicationController
   def index
-    @kingdoms = Kingdom.all
-    @allies = Kingdom.find_by(name: 'Space').try(:vassals)
+    find_all_kingdoms
+    @allies_ids = Kingdom.find_by(name: 'Space').try(:vassals).try(:pluck, :id)
   end
 
   def reset_alliances
@@ -12,9 +14,16 @@ class KingdomsController < ApplicationController
 
   def reset_kingdoms
     ReinitializeKingdoms.run
+    @allies_ids = []
+    @space_kingdom_id = Kingdom.find_by(name: 'Space').id
+    find_all_kingdoms
   end
 
   private
+
+  def find_all_kingdoms
+    @kingdoms = Kingdom.all
+  end
 
   def receiver
     Kingdom.find(params[:receiver_id])

@@ -1,3 +1,3 @@
-- kingdoms ||= Kingdom.all
-- kingdoms.each do |kingdom|
-  = render kingdom
+- @kingdoms.each_with_index do |kingdom, index|
+  = image_tag(kingdom.emblem_avatar, class: "emblem circle_emblem_#{index}", id: "circle_emblem_#{index}", data: { id: kingdom.id, locale: I18n.locale, index: index, ally: @allies_ids.include?(kingdom.id) })
+  = image_tag(kingdom.king_avatar, class: 'center avatar_in_center', id: "king_avatar_#{kingdom.id}", style: 'display: none')

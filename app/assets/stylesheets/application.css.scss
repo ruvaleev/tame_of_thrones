@@ -12,14 +12,135 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
+
 body {
-  background-image: asset-data-url('background.jpg');
+  font-family: 'baltica';
+  background-image: asset-data-url('background.png');
   background-size: 100%;
   background-repeat: no-repeat;
+  margin: 0;
 }
 
 .logo img {
   display: block;
-  margin: auto;
+  margin: 11% 0;
+  width: 90%;
+}
+
+.left_side {
+  margin-left: 4.5%;
+  width: 45.5%;
+  float: left;
+  filter: none;
+  transition:
+    filter 1s;
+}
+
+.container {
+  width: 100%;
+  float: right;
+  position: absolute;
+  height: 808px;
+  overflow: scroll;
+}
+
+.rules {
+  color: white;
+  font-size: 0.94em;
+}
+
+.rules p {
+  margin: 2% 25% 0 0;
+}
+
+.call_to_action {
+  height: 65px;
+}
+
+.call_to_action img {
+  height: 95%;
+  margin-right: 2.5%;
+  float: left;
+}
+
+.call_to_action div {
+  display: inline-block;
+  font-size: 1.5em;
+  line-height: 1.4em;
+}
+
+.buttons {
+  margin-top: 12%;
+}
+
+.buttons button {
+  width: 10em;
+  height: 3.5em;
+  margin-right: 2.1em;
+  font-size: 0.9em;
+  font-family: 'baltica';
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  cursor: pointer;
+  &:hover {
+    border-color: #e16334;
+  }
+}
+
+.tunes {
+  margin-top: 6%;
+  margin-bottom: 20%;
+}
+
+.tunes img {
+  margin-right: 3%;
+  height: 25px;
+  cursor: pointer;
+}
+
+.lang_panel {
+  width: 6.5em;
+  height: 3em;
+  line-height: 3em;
+  background-image: asset-data-url('lang_panel_background.png');
+  background-size: 100%;
+}
+
+.lang_panel div {
+  width: 3.25em;
+  text-align: center;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.lang_panel div a {
+  color: white;
+  text-decoration: none;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.orange {
+  color: #e16334;
+}
+
+.white {
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+@font-face {
+  font-family: 'baltica';
+  src: font-url('/assets/baltica_allfont_ru.ttf');
 }
