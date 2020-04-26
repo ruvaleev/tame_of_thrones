@@ -3,11 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe KingdomsController, type: :controller do
+  describe 'GET #preload' do
+    before { get :preload }
+
+    it 'returns success' do
+      expect(response).to be_success
+    end
+  end
   describe 'GET #index' do
     let(:kingdoms) { create_list(:kingdom, 3) }
     let(:space_kingdom) { create(:kingdom, name: 'Space') }
     let!(:vassal) { create(:kingdom, sovereign: space_kingdom) }
-    before { get :index }
+    before { get :index, format: :js }
 
     it 'populates an array of all kingdoms' do
       expect(assigns(:kingdoms)).to match_array(kingdoms.concat([space_kingdom, vassal]))
@@ -15,10 +22,6 @@ RSpec.describe KingdomsController, type: :controller do
 
     it "populates an array of all Kingdom Space's vassals" do
       expect(assigns(:allies_ids)).to match_array([vassal.id])
-    end
-
-    it 'renders index view' do
-      expect(response).to render_template :index
     end
   end
 

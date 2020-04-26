@@ -1,0 +1,6 @@
+= image_tag("tunes_#{color}.png", class: 'tunes_icon', id: 'tunes')
+- %w[music sounds].each do |feature|
+  = image_tag("#{feature}_on_#{color}.png", class: "#{feature}", id: "#{feature}_on")
+  = image_tag("#{feature}_off_#{color}.png", class: "#{feature}", id: "#{feature}_off", style: 'display: none')
+.lang_panel style='display: none'
+  = render 'lang_panel'

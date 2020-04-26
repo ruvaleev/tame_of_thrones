@@ -1,0 +1,138 @@
+.preload {
+  position: absolute;
+  z-index: 105;
+  opacity: 0.9;
+  font-family: 'Ayuthaya';
+  font-size: 1.3em;
+}
+
+.preload .instructions {
+  position: absolute;
+  margin-top: 4%;
+  margin-left: 4%;
+  max-width: 40%; 
+}
+
+.preload img, .preload p, .preload div {
+  position: absolute;
+}
+
+.preload .start_button {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1% 40%;
+}
+
+.preload .start_button img {
+  width: 100%;
+}
+
+.preload .start_button a {
+  margin: 5%;
+  margin-right: 0.8em;
+}
+
+.preload img#loading {
+  margin-left: 50%;
+  margin-top: 1%;
+  width: 3%;
+}
+
+.preload, #paper_instruction {
+  width: 100%;
+  position: absolute;
+}
+
+.preload .circle {
+  cursor: auto;
+}
+
+#instructions_circle_image {
+  width: 90%;
+  margin-left: 5%;
+}
+
+#instructions_icons_image {
+  margin-top: 42%;
+  margin-left: 4%;
+}
+
+#instructions_buttons_image {
+  margin-top: 36%;
+  margin-left: 4%;
+}
+
+.preload ul {
+    list-style: none;
+}
+
+.preload ul li:before {
+  content: '- ';
+  position: absolute;
+  left: 2%;
+}
+
+.preload hr {
+  border-style: hidden;
+}
+
+.preload p.sounds_tip {
+    margin-top: 43%;
+    margin-left: 25%;
+}
+
+p.lang_tip {
+    margin-top: 50%;
+    margin-left: 8%;
+}
+
+img#loading.rotating {
+  animation-timing-function: ease;
+}
+
+div.ready_to_launch {
+  cursor: pointer;
+}
+
+a.ready_to_launch {
+  cursor: pointer;
+  animation-name: a_ready_to_launch;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes a_ready_to_launch {
+  0% {
+    margin-top: 5%;
+  }
+  10%, 30% {
+    margin-top: 0%;
+  }
+  20% {
+    margin-top: 10%;
+  }
+}
+
+.preload .tunes {
+  margin-top: 5%;
+  margin-left: 43%;
+  width: 20%;
+  z-index: 100;
+}
+
+.preload .tunes .music {
+  margin-left: 27%;
+}
+
+.preload .tunes .sounds {
+  margin-left: 15%;
+}
+
+.preload .tunes .en {
+  margin-left: -15%;
+}
+
+
+
