@@ -13,7 +13,7 @@ feature 'Create alliances', '
   let(:correct_message) { correct_message_to(kingdom_receiver) }
   let(:incorrect_message) { incorrect_message_to(kingdom_receiver) }
 
-  before { visit root_path }
+  before { enter_game(sleep_timer: 1) }
 
   scenario 'opens dialogue window and shows title of receiver', js: true do
     find(".circle img[data-id=\'#{kingdom_receiver.id}\']").click
@@ -36,7 +36,7 @@ feature 'Create alliances', '
       expect(page).to have_selector("img.light_cell.green[data-id=\'#{kingdom_receiver.id}\']", visible: true)
     end
     scenario "cell with receiver's emblem remains green after page reloading" do
-      visit root_path
+      enter_game
       expect(page).to have_selector("img.light_cell.green[data-id=\'#{kingdom_receiver.id}\']", visible: true)
     end
     scenario 'inner green highlight turns on' do

@@ -1,7 +1,6 @@
 .preload {
   position: absolute;
   z-index: 105;
-  opacity: 0.9;
   font-family: 'Ayuthaya';
   font-size: 1.3em;
 }

@@ -12,7 +12,7 @@ feature 'Win game', '
   let!(:kingdoms) { create_list(:kingdom, 3) }
 
   before do
-    visit root_path
+    enter_game(sleep_timer: 0.5)
     send_message(kingdoms.first.id, correct_message_to(kingdoms.first))
   end
 

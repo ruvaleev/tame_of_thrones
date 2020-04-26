@@ -11,7 +11,7 @@ feature 'Reload game', '
   let!(:vassals) { create_list(:kingdom, 2, sovereign: sovereign) }
 
   before do
-    visit root_path
+    enter_game(sleep_timer: 1)
     find('#reload_button').click
   end
 
