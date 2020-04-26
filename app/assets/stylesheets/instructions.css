@@ -1,7 +1,7 @@
 .preload {
   position: absolute;
   z-index: 105;
-  font-family: 'Ayuthaya';
+  font-family: 'ayuthaya';
   font-size: 1.3em;
 }
 
@@ -132,6 +132,3 @@ a.ready_to_launch {
 .preload .tunes .en {
   margin-left: -15%;
 }
-
-
-
