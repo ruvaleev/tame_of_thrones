@@ -14,3 +14,22 @@ en:
   fire: 'Kingdom Fire'
   congratulations_first: 'AFTER A TENSE STRUGGLE KING %{kings_name}% HAVE ACHIEVED DECISIVE ADVANTAGE.'
   congratulations_second: 'Now the enemies of the %{kingdoms_name}% have to bend the knees or to be destroyed'
+  start: 'Start'
+  loading: 'Loading'
+  kingdoms:
+    preload:
+      instructions_html: "<div class='instructions'>
+                            <h4>The Goal:</h4>
+                            <ul>
+                              <li>Make an Alliance with at least three Kingdoms</li>
+                            </ul>
+                            <h4>How can you do it?</h4>
+                            <ul>
+                              <li>Each Kingdom has an animal emblem</li>
+                              <li>If your message contains this emblem, the Kingdom will become your ally (the letters order doesn't matter)</li>
+                              <hr>
+                              <li>HINT: take a look at coats of arms</li>
+                            </ul>
+                          </div>"
+      sounds_tip_html: '<p class="sounds_tip">Turn on (off) sounds and music</p>'
+      lang_tip_html: '<p class="lang_tip">Choose Language</p>'

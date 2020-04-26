@@ -1,0 +1,21 @@
+.preload
+  = image_tag("paper.jpg", id: 'paper_instruction')
+  = image_tag('instructions_icons.png', id: 'instructions_icons_image')
+  = image_tag('instructions_buttons.png', id: 'instructions_buttons_image')
+  .start_button
+    = image_tag('start_button.png', id: 'start_button')
+    a = I18n.t('.loading')
+  = image_tag('loading.png', class: 'rotating', id: 'loading')
+  .tunes style='display: none'
+    = render 'shared/lang_panel'
+    = render 'shared/sounds_panel', color: 'black', immediately: false
+
+  = t('.instructions_html')
+  = t('.sounds_tip_html')
+  = t('.lang_tip_html')
+  .circle
+    = image_tag("instructions_circle_#{I18n.locale}.png", id: 'instructions_circle_image')
+.container
+
+javascript:
+  load_application("#{I18n.locale}")

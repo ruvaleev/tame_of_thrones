@@ -1,0 +1,5 @@
+$('.container').html('<%= j render 'game' %>')
+$('.start_button a').html('<%= I18n.t('.start') %>')
+$('.start_button, .start_button a').addClass('ready_to_launch')
+$('.preload .tunes').fadeIn()
+$('#loading').fadeOut()

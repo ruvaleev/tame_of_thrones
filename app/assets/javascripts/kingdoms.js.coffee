@@ -1,7 +1,5 @@
 ready = -> 
-  pictureCircleCells(index) for index in [0..5]
-
-  $('div.circle').mousedown (e) ->
+  $('body').on 'mousedown', 'div#circle', (e) ->
     if $(this).hasClass('maximized')
       position = positionAtCircle(e)
       minimize_circle(this) if position.hypotenuse > position.circle_radius
@@ -12,36 +10,39 @@ ready = ->
     circle = document.getElementById('circle');
     minimize_circle(circle, false) if $(circle).has(e.target).length == 0
 
-  $('.circle').on 'click', 'img.emblem', (e) ->
+  $('body').on 'click', '.circle img.emblem', (e) ->
     openDialogue($(e.target).data('id'), $(e.target).data('index'), $(e.target).data('locale'))
 
-  $('#messages_form').on 'submit', (e) ->
+  $('body').on 'submit', '#messages_form', (e) ->
     sendMessage(e, $(this))
 
-  $('div.circle').mousemove (e) ->
+  $('body').on 'mousemove', 'div#circle', (e) ->
     cell_id = recognizeCell(e)
     unselectCircleCells('blue', 0, true)
     selectCircleCell(cell_id, 'blue', 0, true) if typeof(cell_id) != 'undefined'
 
-  $('#reset_button').click () ->
+  $('body').on 'click', '#reset_button', () ->
     resetAllies()
 
-  $('.tunes .sounds').click () ->
-    toggleSounds()
-
-  $('.tunes .music').click () ->
-    toggleMusic()
-
-  $('#reload_button').click () ->
+  $('body').on 'click', '#reload_button', () ->
     resetKingdoms()
 
+  $('body').on 'click', '.tunes .sounds', () ->
+    toggleSounds()
 
+  $('body').on 'click', '.tunes .music', () ->
+    immediately = $(this).data('immediately')
+    toggleMusic(immediately)
 
+  $('body').on 'click', '.tunes_icon', () ->
+    $('.lang_panel').slideToggle()
+    setTimeout ->
+      $('.lang_panel').slideToggle() if $('.lang_panel').is(':visible')
+    ,6000
 
-  $('#rules').click (e) ->
-    elem = document.getElementById('rules_modal');
-    $('#rules_modal').fadeIn()
-    closeByClick(elem)
+  $('.preload').on 'click', 'div.ready_to_launch', () ->
+    turnMusic() if $('.preload .music_on').is(':visible')
+    $('.preload').fadeOut()
 
 
 $(document).on('turbolinks:load', ready)

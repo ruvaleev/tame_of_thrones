@@ -159,14 +159,17 @@
   $("img.light_cell_#{cell_id}.#{color}, #circle_emblem_#{cell_id}").addClass("highlighted_#{color}")
   $("#circle_emblem_#{cell_id}").width('15%') if with_emblem
 
-@pictureCircleCells = (index) ->
+@pictureCircleCells = () ->
+  pictureCells(index) for index in [0..5]
+
+@pictureCells = (index) ->
   for color in ['blue', 'orange', 'red', 'green']
     kingdom_id = $("img.emblem[data-index=#{index}]").data('id')
     $("##{color}_light_cell").clone().attr({
                                             class: "light_cell light_cell_#{index} #{color}",
                                             'data-index': index,
                                             'data-id': kingdom_id
-                                          }).appendTo('div.circle')
+                                          }).appendTo('div#circle')
   
   selectCircleCell($(emblem).data('index'), 'green', 0) for emblem in $('#circle img.emblem[data-ally="true"]')
 
@@ -182,12 +185,12 @@
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
 
 @toggleSounds = () ->
-  $('#sounds_on').toggle()
-  $('#sounds_off').toggle()
+  $('.sounds_on').toggle()
+  $('.sounds_off').toggle()
     
 @audio =
   play: (source) ->
-    if $('#sounds_on').is(':visible')
+    if $('body #sounds_on').is(':visible')
       audio = new Audio()
       audio.src = source
       audio.autoplay = true
@@ -199,8 +202,8 @@
   $('p.congratulations.bottom').fadeIn()
   frame = document.getElementById('central_frame')
   frame.style.zIndex = 105
-  document.querySelector("#music").pause()
-  document.querySelector("#final_music").play() if $('#music_on').is(':visible')
+  document.querySelector("body #music").pause()
+  document.querySelector("body #final_music").play() if $('body #music_on').is(':visible')
   $('#throne_is_taken').fadeIn()
   elem = document.getElementById('throne_is_taken');
   closeByClick(elem)
@@ -224,9 +227,12 @@
 
 
 
-@toggleMusic = () ->
-  $('#music_on').toggle()
-  $('#music_off').toggle()
+@toggleMusic = (turn_immediately) ->
+  $('.music_on').toggle()
+  $('.music_off').toggle()
+  turnMusic() if turn_immediately
+
+@turnMusic = () ->
   audio = document.querySelector("#music")
   if audio.paused
     audio.play()
@@ -239,8 +245,8 @@
       $('.congratulations').fadeOut()
       frame = document.getElementById('central_frame')
       frame.style.zIndex = 103
-      document.querySelector("#final_music").pause()
-      document.querySelector("#music").play() if $('#music_on').is(':visible')
+      document.querySelector("body #final_music").pause()
+      document.querySelector("body #music").play() if $('body #music_on').is(':visible')
 
 @finishRotating = () ->
   $('img.circle.rotating').removeClass('rotating').addClass('finish_rotating')

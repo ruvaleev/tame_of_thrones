@@ -15,11 +15,15 @@
 */
 
 body {
-  font-family: 'baltica';
   background-image: asset-data-url('background.png');
   background-size: 100%;
   background-repeat: no-repeat;
   margin: 0;
+}
+
+body .container {
+  font-family: 'baltica';
+  font-size: 1.1em;
 }
 
 .logo img {

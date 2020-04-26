@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class KingdomsController < ApplicationController
+  protect_from_forgery except: :index
+
+  def preload; end
+
   def index
     find_all_kingdoms
     @allies_ids = Kingdom.find_by(name: 'Space').try(:vassals).try(:pluck, :id)
