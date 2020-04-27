@@ -7,7 +7,7 @@ feature 'Reset alliances', '
   As User
   I want to reset every alliance and nullify play field
 ' do
-  let!(:sender_kingdom) { create(:kingdom, name: 'Space') }
+  let!(:sender_kingdom) { create(:kingdom, name_en: 'Space') }
   let!(:kingdom_receiver) { create(:kingdom) }
   let(:correct_message) { correct_message_to(kingdom_receiver) }
 

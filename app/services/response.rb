@@ -36,9 +36,9 @@ class Response
   def prepare_message(string)
     {
       receiver_name: receiver.name,
-      receiver_king: receiver.king,
+      receiver_king: receiver.leader,
       sender_name: sender.name,
-      sender_king: sender.king
+      sender_king: sender.leader
     }.each { |key, value| string.gsub!("%{#{key}}%", value) }
     string
   end

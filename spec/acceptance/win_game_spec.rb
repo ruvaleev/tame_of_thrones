@@ -7,7 +7,7 @@ feature 'Win game', '
   As User
   I want to be able to see appropriate message
 ' do
-  let!(:ruler) { create(:kingdom, name: 'Space') }
+  let!(:ruler) { create(:kingdom, name_en: 'Space') }
   let!(:vassals) { create_list(:kingdom, 2, sovereign: ruler) }
   let!(:kingdoms) { create_list(:kingdom, 3) }
 
@@ -22,7 +22,7 @@ feature 'Win game', '
 
   scenario "user can see ruler king's name", js: true do
     within '#circle' do
-      expect(page).to have_text(ruler.king.upcase)
+      expect(page).to have_text(ruler.leader.upcase)
     end
   end
 

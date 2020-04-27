@@ -15,7 +15,7 @@
     }
     success: (response) ->
       $('.title .king').html(response.king)
-      $('.title .name').html(response.translated_name)
+      $('.title .name').html(response.name)
       $('#chat').html("<p class='left orange'> #{response.message} </p>")
       $('#messages_form input[name="receiver_id"]').val(id)
       $("#king_avatar_#{id}, .title, #chat, div.form, #messages_form").fadeIn()
