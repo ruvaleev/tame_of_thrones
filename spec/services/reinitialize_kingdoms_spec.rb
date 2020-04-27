@@ -8,13 +8,21 @@ RSpec.describe ReinitializeKingdoms do
       before { described_class.run }
 
       Kingdom::GREAT_HOUSES.each do |kingdom|
-        it "creates #{kingdom[:name]} kingdom" do
-          expect(Kingdom.where(name: kingdom[:name]).exists?).to be_truthy
+        it "creates #{kingdom[:name_en]} kingdom" do
+          expect(Kingdom.where(name_en: kingdom[:name_en]).exists?).to be_truthy
         end
       end
 
       it 'creates only great houses' do
         expect(Kingdom.count).to eq Kingdom::GREAT_HOUSES.count
+      end
+
+      it 'set :title to :king when got males avatar' do
+        expect(males_avatars.map { |avatar_id| recognize_title_by_avatar(avatar_id) }.uniq).to eq ['king']
+      end
+
+      it 'set :title to :queen when got females avatar' do
+        expect(females_avatars.map { |avatar_id| recognize_title_by_avatar(avatar_id) }.uniq).to eq ['queen']
       end
     end
 
@@ -26,4 +34,18 @@ RSpec.describe ReinitializeKingdoms do
       end
     end
   end
+end
+
+private
+
+def recognize_title_by_avatar(avatar_id)
+  Kingdom.find_by(leader_avatar: "king_avatars/#{avatar_id}.png").title
+end
+
+def males_avatars
+  ReinitializeKingdoms::AVATARS_TITLES.select { |_avatar_id, title| title == :king }.keys
+end
+
+def females_avatars
+  ReinitializeKingdoms::AVATARS_TITLES.select { |_avatar_id, title| title == :queen }.keys
 end

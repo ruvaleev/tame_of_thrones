@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative 'kingdoms_shared_examples'
 
 RSpec.describe Kingdom do
   it { should belong_to(:sovereign).class_name('Kingdom').optional }
@@ -16,10 +17,14 @@ RSpec.describe Kingdom do
     should have_many(:received_messages).class_name('Message').with_foreign_key('receiver_id')
                                         .inverse_of(:receiver).dependent(:nullify)
   end
-  it { should validate_uniqueness_of(:name) }
-  it { should validate_uniqueness_of(:emblem) }
+  it { should validate_uniqueness_of(:name_en) }
+  it { should validate_uniqueness_of(:name_ru) }
+  it { should validate_uniqueness_of(:emblem_en) }
+  it { should validate_uniqueness_of(:emblem_ru) }
   it { should validate_uniqueness_of(:ruler).allow_blank }
-  it { should validate_presence_of(:king) }
+  it { should validate_presence_of(:leader_en) }
+  it { should validate_presence_of(:leader_ru) }
+  it { should validate_inclusion_of(:title).in_array(%w[king queen]) }
 
   let(:kingdom_sender) { create(:kingdom) }
   let(:kingdom_receiver) { create(:kingdom) }
@@ -110,52 +115,15 @@ RSpec.describe Kingdom do
     end
   end
 
-  describe '#translated_name' do
-    context 'with English locale' do
-      let(:name) { english_name_translates.keys.sample.capitalize }
-      let(:kingdom) { create(:kingdom, name: name) }
-
-      it "returns correctly translated kingdom's name" do
-        expect(kingdom.translated_name).to eq english_name_translates[name.downcase]
-      end
-    end
-    context 'with Russian locale' do
-      let(:name) { russian_name_translates.keys.sample.capitalize }
-      let(:kingdom) { create(:kingdom, name: name) }
-
-      it "returns correctly translated kingdom's name" do
-        I18n.locale = :ru
-        expect(kingdom.translated_name).to eq russian_name_translates[name.downcase]
-      end
-    end
-    context 'when translation not found' do
-      let(:kingdom) { create(:kingdom) }
-
-      it "returns kingdom's name" do
-        expect(kingdom.translated_name).to eq kingdom.name
-      end
-    end
+  describe '#name' do
+    it_behaves_like 'internationalized_method', 'name'
   end
-end
 
-def english_name_translates
-  {
-    space: 'Kingdom Space',
-    land: 'Kingdom Land',
-    water: 'Kingdom Water',
-    ice: 'Kingdom Ice',
-    air: 'Kingdom Air',
-    fire: 'Kingdom Fire'
-  }
-end
+  describe '#emblem' do
+    it_behaves_like 'internationalized_method', 'emblem'
+  end
 
-def russian_name_translates
-  {
-    space: 'Королевства Простора',
-    land: 'Королевства Земли',
-    water: 'Королевства Воды',
-    ice: 'Королевства Льда',
-    air: 'Королевства Воздуха',
-    fire: 'Королевства Огня'
-  }
+  describe '#leader' do
+    it_behaves_like 'internationalized_method', 'leader'
+  end
 end

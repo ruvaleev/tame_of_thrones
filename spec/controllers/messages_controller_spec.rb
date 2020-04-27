@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe MessagesController, type: :controller do
-  let!(:sender) { create(:kingdom, name: 'Space') }
+  let!(:sender) { create(:kingdom, name_en: 'Space') }
   let(:receiver) { create(:kingdom) }
 
   describe 'POST #create' do

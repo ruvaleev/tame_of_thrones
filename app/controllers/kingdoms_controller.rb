@@ -7,7 +7,7 @@ class KingdomsController < ApplicationController
 
   def index
     find_all_kingdoms
-    @allies_ids = Kingdom.find_by(name: 'Space').try(:vassals).try(:pluck, :id)
+    @allies_ids = Kingdom.find_by(name_en: 'Space').try(:vassals).try(:pluck, :id)
   end
 
   def reset_alliances
@@ -19,7 +19,7 @@ class KingdomsController < ApplicationController
   def reset_kingdoms
     ReinitializeKingdoms.run
     @allies_ids = []
-    @space_kingdom_id = Kingdom.find_by(name: 'Space').id
+    @space_kingdom_id = Kingdom.find_by(name_en: 'Space').id
     find_all_kingdoms
   end
 

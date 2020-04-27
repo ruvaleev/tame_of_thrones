@@ -12,7 +12,7 @@ RSpec.describe KingdomsController, type: :controller do
   end
   describe 'GET #index' do
     let(:kingdoms) { create_list(:kingdom, 3) }
-    let(:space_kingdom) { create(:kingdom, name: 'Space') }
+    let(:space_kingdom) { create(:kingdom, name_en: 'Space') }
     let!(:vassal) { create(:kingdom, sovereign: space_kingdom) }
     before { get :index, format: :js }
 

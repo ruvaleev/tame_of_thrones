@@ -9,18 +9,22 @@ class Kingdom < ApplicationRecord
     has_many :received_messages, foreign_key: 'receiver_id', inverse_of: :receiver, dependent: :nullify
   end
 
-  validates :name, uniqueness: true
-  validates :emblem, uniqueness: true
-  validates :king, presence: true
+  validates :name_en, uniqueness: true
+  validates :name_ru, uniqueness: true
+  validates :emblem_en, uniqueness: true
+  validates :emblem_ru, uniqueness: true
+  validates :leader_en, presence: true
+  validates :leader_ru, presence: true
+  validates :title, inclusion: { in: %w[king queen] }
   validates :ruler, uniqueness: true, allow_blank: true
 
   GREAT_HOUSES = [
-    { name: 'Space', emblem: 'Gorilla', king: 'Shan' },
-    { name: 'Land', emblem: 'Panda' },
-    { name: 'Water', emblem: 'Octopus' },
-    { name: 'Ice', emblem: 'Mammoth' },
-    { name: 'Air', emblem: 'Owl' },
-    { name: 'Fire', emblem: 'Dragon' }
+    { name_en: 'Space', name_ru: 'Простор', emblem_en: 'Gorilla', emblem_ru: 'Горилла' },
+    { name_en: 'Land', name_ru: 'Земля', emblem_en: 'Panda', emblem_ru: 'Панда' },
+    { name_en: 'Water', name_ru: 'Вода', emblem_en: 'Octopus', emblem_ru: 'Осьминог' },
+    { name_en: 'Ice', name_ru: 'Лед', emblem_en: 'Mammoth', emblem_ru: 'Маммонт' },
+    { name_en: 'Air', name_ru: 'Воздух', emblem_en: 'Owl', emblem_ru: 'Сова' },
+    { name_en: 'Fire', name_ru: 'Огонь', emblem_en: 'Dragon', emblem_ru: 'Дракон' }
   ].freeze
 
   MINIMUM_FOR_VICTORY = 3
@@ -47,8 +51,16 @@ class Kingdom < ApplicationRecord
     find_by(ruler: true)
   end
 
-  def translated_name
-    I18n.t(".#{name.downcase}", default: name)
+  def name
+    send("name_#{I18n.locale}")
+  end
+
+  def emblem
+    send("emblem_#{I18n.locale}")
+  end
+
+  def leader
+    send("leader_#{I18n.locale}")
   end
 
   private
