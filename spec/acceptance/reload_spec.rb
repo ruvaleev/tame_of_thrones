@@ -7,7 +7,7 @@ feature 'Reload game', '
   As User
   I want to be able to recreate every kingdom with one button click
 ' do
-  let(:sovereign) { create(:kingdom, name: 'Space') }
+  let(:sovereign) { create(:kingdom, name_en: 'Space') }
   let!(:vassals) { create_list(:kingdom, 2, sovereign: sovereign) }
 
   before do

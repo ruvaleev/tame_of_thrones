@@ -7,7 +7,7 @@ feature 'Create alliances', '
   As King Shan
   I want to send messages to possible allies
 ' do
-  let!(:sender_kingdom) { create(:kingdom, name: 'Space') }
+  let!(:sender_kingdom) { create(:kingdom, name_en: 'Space') }
   let!(:kingdom_receiver) { create(:kingdom) }
   let!(:second_receiver) { create(:kingdom) }
   let(:correct_message) { correct_message_to(kingdom_receiver) }

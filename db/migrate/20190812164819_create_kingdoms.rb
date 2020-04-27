@@ -1,15 +1,19 @@
+# frozen_string_literal: true
+
 class CreateKingdoms < ActiveRecord::Migration[5.2]
   def change
     create_table :kingdoms do |t|
-      t.string :name, unique: true, index: true
-      t.string :emblem, unique: true, index: true
-      t.string :king, index: true
+      t.string :name_en, unique: true
+      t.string :name_ru, unique: true
+      t.string :emblem_en, unique: true
+      t.string :emblem_ru, unique: true
+      t.string :leader_ru, unique: true
+      t.string :leader_en, unique: true
       t.string :emblem_avatar
-      t.string :king_avatar
+      t.string :leader_avatar
+      t.string :title, default: :king
       t.boolean :ruler, default: false
       t.integer :vassals_count, default: 0
     end
-
-    add_reference :kingdoms, :sovereign, foreign_key: { to_table: :kingdoms }
   end
 end
