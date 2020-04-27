@@ -208,7 +208,7 @@
   elem = document.getElementById('throne_is_taken');
   closeByClick(elem)
 
-@resetKingdoms = () ->
+@resetKingdoms = (locale) ->
   audio.play('sounds/gong.mp3')
   unselectCircleCells('green', 1000)
   closeDialogue()
@@ -219,7 +219,9 @@
     type: 'POST',
     beforeSend: (xhr) -> 
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-
+    data: {
+      locale: locale
+    }
 @closeDialogue = () ->
   unselectCircleCells('orange', 1000)
   $('.avatar_in_center:visible, .title:visible, #chat, #messages_form').fadeOut()

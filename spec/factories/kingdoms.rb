@@ -14,9 +14,10 @@ FactoryBot.define do
     sequence :emblem_ru do |n|
       "Герб_королевства_#{n}"
     end
-    title { %w[king queen].sample }
-    leader_en { generate_name_en(title) }
-    leader_ru { generate_name_ru(title) }
+    title_en { %w[King Queen].sample }
+    title_ru { { 'King' => 'Король', 'Queen' => 'Королева' }[title_en] }
+    leader_en { generate_name_en(title_en) }
+    leader_ru { generate_name_ru(title_en) }
     emblem_avatar { 'support/test_image.png' }
     leader_avatar { 'support/test_image.png' }
   end

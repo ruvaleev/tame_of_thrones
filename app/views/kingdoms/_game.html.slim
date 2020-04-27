@@ -11,7 +11,7 @@
     p = I18n.t('.rules_first_part')
     p = I18n.t('.rules_second_part')
   .buttons
-    = button_tag(I18n.t('.reload'), id: 'reload_button')
+    = button_tag(I18n.t('.reload'), id: 'reload_button', data: { locale: I18n.locale })
     = button_tag(I18n.t('.reset'), id: 'reset_button')
   .tunes
     = image_tag('tunes_orange.png', class: 'tunes_icon', id: 'tunes')

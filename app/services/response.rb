@@ -25,20 +25,22 @@ class Response
 
   def choose_file_for_parsing(response)
     {
-      'consent' => 'public/uploads/alliance_consent_messages.txt',
-      'refusal' => 'public/uploads/alliance_refusal_messages.txt',
-      'ally_greeting' => 'public/uploads/ally_greeting_messages.txt',
-      'enemy_greeting' => 'public/uploads/enemy_greeting_messages.txt',
-      'neutral_greeting' => 'public/uploads/neutral_greeting_messages.txt'
+      'consent' => "public/uploads/alliance_consent_messages_#{I18n.locale}.txt",
+      'refusal' => "public/uploads/alliance_refusal_messages_#{I18n.locale}.txt",
+      'ally_greeting' => "public/uploads/ally_greeting_messages_#{I18n.locale}.txt",
+      'enemy_greeting' => "public/uploads/enemy_greeting_messages_#{I18n.locale}.txt",
+      'neutral_greeting' => "public/uploads/neutral_greeting_messages_#{I18n.locale}.txt"
     }[response]
   end
 
   def prepare_message(string)
     {
       receiver_name: receiver.name,
-      receiver_king: receiver.leader,
       sender_name: sender.name,
-      sender_king: sender.leader
+      receiver_king: receiver.leader,
+      sender_king: sender.leader,
+      receiver_title: receiver.title,
+      sender_title: sender.title
     }.each { |key, value| string.gsub!("%{#{key}}%", value) }
     string
   end

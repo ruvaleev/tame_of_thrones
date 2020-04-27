@@ -24,7 +24,8 @@ RSpec.describe Kingdom do
   it { should validate_uniqueness_of(:ruler).allow_blank }
   it { should validate_presence_of(:leader_en) }
   it { should validate_presence_of(:leader_ru) }
-  it { should validate_inclusion_of(:title).in_array(%w[king queen]) }
+  it { should validate_inclusion_of(:title_en).in_array(%w[King Queen]) }
+  it { should validate_inclusion_of(:title_ru).in_array(%w[Король Королева]) }
 
   let(:kingdom_sender) { create(:kingdom) }
   let(:kingdom_receiver) { create(:kingdom) }
@@ -125,5 +126,9 @@ RSpec.describe Kingdom do
 
   describe '#leader' do
     it_behaves_like 'internationalized_method', 'leader'
+  end
+
+  describe '#title' do
+    it_behaves_like 'internationalized_method', 'title'
   end
 end

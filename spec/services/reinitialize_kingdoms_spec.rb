@@ -17,12 +17,12 @@ RSpec.describe ReinitializeKingdoms do
         expect(Kingdom.count).to eq Kingdom::GREAT_HOUSES.count
       end
 
-      it 'set :title to :king when got males avatar' do
-        expect(males_avatars.map { |avatar_id| recognize_title_by_avatar(avatar_id) }.uniq).to eq ['king']
+      it 'set :title to :King when got males avatar' do
+        expect(males_avatars.map { |avatar_id| recognize_title_by_avatar(avatar_id) }.uniq).to eq ['King']
       end
 
-      it 'set :title to :queen when got females avatar' do
-        expect(females_avatars.map { |avatar_id| recognize_title_by_avatar(avatar_id) }.uniq).to eq ['queen']
+      it 'set :title to :Queen when got females avatar' do
+        expect(females_avatars.map { |avatar_id| recognize_title_by_avatar(avatar_id) }.uniq).to eq ['Queen']
       end
     end
 
@@ -43,9 +43,9 @@ def recognize_title_by_avatar(avatar_id)
 end
 
 def males_avatars
-  ReinitializeKingdoms::AVATARS_TITLES.select { |_avatar_id, title| title == :king }.keys
+  ReinitializeKingdoms::AVATARS_TITLES.select { |_avatar_id, titles| titles.first == :king }.keys
 end
 
 def females_avatars
-  ReinitializeKingdoms::AVATARS_TITLES.select { |_avatar_id, title| title == :queen }.keys
+  ReinitializeKingdoms::AVATARS_TITLES.select { |_avatar_id, titles| titles.first == :queen }.keys
 end

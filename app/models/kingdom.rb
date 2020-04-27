@@ -15,7 +15,8 @@ class Kingdom < ApplicationRecord
   validates :emblem_ru, uniqueness: true
   validates :leader_en, presence: true
   validates :leader_ru, presence: true
-  validates :title, inclusion: { in: %w[king queen] }
+  validates :title_en, inclusion: { in: %w[King Queen] }
+  validates :title_ru, inclusion: { in: %w[Король Королева] }
   validates :ruler, uniqueness: true, allow_blank: true
 
   GREAT_HOUSES = [
@@ -61,6 +62,10 @@ class Kingdom < ApplicationRecord
 
   def leader
     send("leader_#{I18n.locale}")
+  end
+
+  def title
+    send("title_#{I18n.locale}")
   end
 
   private

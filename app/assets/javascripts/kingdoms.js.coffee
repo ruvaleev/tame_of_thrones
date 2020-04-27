@@ -24,8 +24,8 @@ ready = ->
   $('body').on 'click', '#reset_button', () ->
     resetAllies()
 
-  $('body').on 'click', '#reload_button', () ->
-    resetKingdoms()
+  $('body').on 'click', '#reload_button', (e) ->
+    resetKingdoms($(e.target).data('locale'))
 
   $('body').on 'click', '.tunes .sounds', () ->
     toggleSounds()

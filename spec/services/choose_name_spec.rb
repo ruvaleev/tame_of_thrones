@@ -6,7 +6,7 @@ RSpec.describe ChooseName do
   subject(:run_service) { service.run }
 
   let(:service) { described_class.new(title) }
-  let(:title) { %w[king queen].sample }
+  let(:title) { %w[King Queen].sample }
   let(:uniq_names) { 'Тестовое имя, Test name' }
   let(:existing_names) { 'Существующее имя, Existing name' }
   let!(:kingdom) { create(:kingdom, leader_en: existing_names.split(', ').last) }

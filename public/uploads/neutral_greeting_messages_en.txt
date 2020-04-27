@@ -1,0 +1,5 @@
+We are glad to welcome you, %{receiver_title}% %{receiver_king}%. 
+In these difficult times every ally counts. How many allies Kingdom %{receiver_name}% has?
+Sit down please. %{sender_title}% %{sender_king}% welcomes any guest of %{sender_name}% Kingdom.
+Come in, settle down, how can we help you, %{receiver_title}% %{receiver_king}%?
+Nice to greet you, %{receiver_title}% %{receiver_king}%.

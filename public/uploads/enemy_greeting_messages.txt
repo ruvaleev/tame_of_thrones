@@ -1,5 +1,0 @@
-And you dare to come to %{sender_name}% Kingdom? Speak!
-What does King %{receiver_king}% want?
-His Majesty King %{sender_king}% listens. You're from %{receiver_name}%, aren't you?
-Come in, settle down, speak...
-You? Again? Speak.
