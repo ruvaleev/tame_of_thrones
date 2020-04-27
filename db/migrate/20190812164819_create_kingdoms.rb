@@ -9,9 +9,10 @@ class CreateKingdoms < ActiveRecord::Migration[5.2]
       t.string :emblem_ru, unique: true
       t.string :leader_ru, unique: true
       t.string :leader_en, unique: true
+      t.string :title_en, default: :King
+      t.string :title_ru, default: :Король
       t.string :emblem_avatar
       t.string :leader_avatar
-      t.string :title, default: :king
       t.boolean :ruler, default: false
       t.integer :vassals_count, default: 0
     end

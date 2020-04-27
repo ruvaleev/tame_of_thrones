@@ -1,0 +1,5 @@
+%{sender_name}% Kingdom will be happy to support you, %{receiver_title}% %{receiver_king}%
+%{receiver_name}% is our sovereign, now and forever!
+In the name of %{sender_title}% %{sender_king}%, %{receiver_name}% Kingdom can count on us.
+We gonna be good allies, %{receiver_king}% %{receiver_king}%.
+Kingdoms %{sender_name}% and %{receiver_name}% are friends, now and forever!

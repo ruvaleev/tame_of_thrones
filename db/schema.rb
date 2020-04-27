@@ -22,9 +22,10 @@ ActiveRecord::Schema.define(version: 2020_04_27_032305) do
     t.string "emblem_ru"
     t.string "leader_ru"
     t.string "leader_en"
+    t.string "title_en", default: "King"
+    t.string "title_ru", default: "Король"
     t.string "emblem_avatar"
     t.string "leader_avatar"
-    t.string "title", default: "king"
     t.boolean "ruler", default: false
     t.integer "vassals_count", default: 0
     t.bigint "sovereign_id"

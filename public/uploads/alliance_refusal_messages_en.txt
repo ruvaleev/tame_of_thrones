@@ -1,0 +1,5 @@
+%{sender_name}% Kingdom will never support %{receiver_title}% %{receiver_king}%. Tell him!
+Going to have to pretend We didn't hear that. %{sender_name}% Kingdom will never giving in to %{receiver_name}%.
+%{sender_title}% %{sender_king}% will be furious, if I'll pass the request up to him. Tell to King %{receiver_king}% we refuse!
+Stop talking nonsense!
+Nonsense!

@@ -10,12 +10,16 @@ RSpec.describe Response do
   subject(:service) { described_class.new(sender, receiver, response) }
 
   before do
-    service.stub(:choose_response) { '%{receiver_name}% %{receiver_king}% %{sender_name}% %{sender_king}%'.dup }
+    service.stub(:choose_response) do
+      '%{receiver_name}% %{sender_name}% %{receiver_king}% %{sender_king}% %{receiver_title}% %{sender_title}%'.dup
+    end
   end
 
   describe '#send' do
     it 'transforms parameters in string to correct values' do
-      expect(service.send).to eq "#{receiver.name_en} #{receiver.leader_en} #{sender.name_en} #{sender.leader_en}"
+      expect(
+        service.send
+      ).to eq "#{receiver.name} #{sender.name} #{receiver.leader} #{sender.leader} #{receiver.title} #{sender.title}"
     end
   end
 end
