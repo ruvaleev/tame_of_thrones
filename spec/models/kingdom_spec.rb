@@ -17,6 +17,9 @@ RSpec.describe Kingdom do
     should have_many(:received_messages).class_name('Message').with_foreign_key('receiver_id')
                                         .inverse_of(:receiver).dependent(:nullify)
   end
+  it { should belong_to(:game_set).optional }
+  it { should belong_to(:game).inverse_of(:player).optional }
+
   it { should validate_uniqueness_of(:name_en) }
   it { should validate_uniqueness_of(:name_ru) }
   it { should validate_uniqueness_of(:emblem_en) }

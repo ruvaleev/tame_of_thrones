@@ -2,6 +2,8 @@
 
 class Kingdom < ApplicationRecord
   belongs_to :sovereign, class_name: 'Kingdom', optional: true, counter_cache: :vassals_count
+  belongs_to :game_set, optional: true
+  belongs_to :game, class_name: 'GameSet', inverse_of: :player, optional: true
   has_many :vassals, class_name: 'Kingdom', foreign_key: 'sovereign_id', inverse_of: :sovereign, dependent: :nullify
 
   with_options class_name: 'Message' do
