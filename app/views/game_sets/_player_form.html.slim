@@ -1,0 +1,18 @@
+
+table
+  tr
+    td = select '', "title_#{I18n.locale}".to_sym, Kingdom::TITLES[I18n.locale], selected: @player.title, id: :player_title
+    td = text_field "leader_#{I18n.locale}".to_sym, :leader, value: @player.leader, id: :player_leader
+  tr
+    td = label_tag "#{I18n.t('.kingdom')}:"
+    td = text_field "name_#{I18n.locale}".to_sym, :name, value: @player.name, id: :player_name
+= image_tag('random.png', id: 'reset_player', data: { id: @player.id, locale: I18n.locale })
+
+javascript:
+  locale = "#{I18n.locale}"
+  $('#reset_player').on('click', function(){
+    clenchUnclench($(this))
+    player_id = $(this).data('id')
+    locale = $(this).data('locale')
+    reset_player(player_id, locale)
+  })

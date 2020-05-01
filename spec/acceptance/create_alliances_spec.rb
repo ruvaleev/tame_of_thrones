@@ -4,16 +4,18 @@ require_relative 'acceptance_helper'
 
 feature 'Create alliances', '
   In order to create an alliance
-  As King Shan
+  As User
   I want to send messages to possible allies
 ' do
-  let!(:sender_kingdom) { create(:kingdom, name_en: 'Space') }
-  let!(:kingdom_receiver) { create(:kingdom) }
-  let!(:second_receiver) { create(:kingdom) }
+  let(:game_set) { create(:game_set) }
+  let!(:player) { create(:player, game: game_set) }
+  let(:game_kingdoms) { create_list(:kingdom, 6, game_set: game_set) }
+  let!(:kingdom_receiver) { game_kingdoms.sample }
+  let!(:second_receiver) { (game_kingdoms - [kingdom_receiver]).sample }
   let(:correct_message) { correct_message_to(kingdom_receiver) }
   let(:incorrect_message) { incorrect_message_to(kingdom_receiver) }
 
-  before { enter_game(sleep_timer: 1) }
+  before { enter_game(sleep_timer: 1, game_set_uid: game_set.uid) }
 
   scenario 'opens dialogue window and shows title of receiver', js: true do
     find(".circle img[data-id=\'#{kingdom_receiver.id}\']").click
@@ -26,7 +28,7 @@ feature 'Create alliances', '
       expect(page).to have_text correct_message
     end
     scenario 'new alliance is created' do
-      expect(sender_kingdom.vassals).to eq [kingdom_receiver]
+      expect(player.vassals).to eq [kingdom_receiver]
     end
     scenario "cell with receiver's emblem became green" do
       expect(page).to have_selector("img.light_cell.green[data-id=\'#{kingdom_receiver.id}\']", visible: true)
@@ -55,7 +57,7 @@ feature 'Create alliances', '
       end
     end
     scenario 'new alliance is not created' do
-      expect(sender_kingdom.vassals).to_not eq [kingdom_receiver]
+      expect(player.vassals).to_not eq [kingdom_receiver]
     end
     scenario "cell with receiver's emblem became red" do
       expect(page).to have_selector("img.light_cell.red[data-id=\'#{kingdom_receiver.id}\']", visible: true)

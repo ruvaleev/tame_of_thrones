@@ -1,6 +1,5 @@
 = form_with(url: "/messages", method: "post", id: 'messages_form') do |f|
   = f.text_field :body
-  = f.hidden_field :sender_id, value: Kingdom.find_by_name_en('Space')&.id
   = f.hidden_field :receiver_id, value: receiver_id ||= nil
   = f.hidden_field :locale, value: I18n.locale
   = f.submit '', type: :image, src: image_path('submit.png'), id: 'submit_button'

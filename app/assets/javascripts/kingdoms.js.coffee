@@ -21,11 +21,14 @@ ready = ->
     unselectCircleCells('blue', 0, true)
     selectCircleCell(cell_id, 'blue', 0, true) if typeof(cell_id) != 'undefined'
 
-  $('body').on 'click', '#reset_button', () ->
-    resetAllies()
+  $('body').on 'click', '#reset_button', (e) ->
+    game_set_id = $(e.target).data('game-set-id')
+    resetAllies(game_set_id)
 
   $('body').on 'click', '#reload_button', (e) ->
-    resetKingdoms($(e.target).data('locale'))
+    game_set_id = $(e.target).data('game-set-id')
+    locale = $(e.target).data('locale')
+    resetKingdoms(game_set_id, locale)
 
   $('body').on 'click', '.tunes .sounds', () ->
     toggleSounds()
@@ -39,10 +42,5 @@ ready = ->
     setTimeout ->
       $('.lang_panel').slideToggle() if $('.lang_panel').is(':visible')
     ,6000
-
-  $('.preload').on 'click', 'div.ready_to_launch', () ->
-    turnMusic() if $('.preload .music_on').is(':visible')
-    $('.preload').fadeOut()
-
 
 $(document).on('turbolinks:load', ready)

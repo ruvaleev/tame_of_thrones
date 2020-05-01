@@ -76,6 +76,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'show_me_the_cookies'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

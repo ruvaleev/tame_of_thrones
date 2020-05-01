@@ -3,71 +3,84 @@
 require 'rails_helper'
 
 RSpec.describe KingdomsController, type: :controller do
-  describe 'GET #preload' do
-    before { get :preload }
+  describe 'POST #update' do
+    subject(:send_request) { post :update, params: params, format: :js }
 
-    it 'returns success' do
-      expect(response).to be_success
+    let(:kingdom) { create(:kingdom, title_en: 'King', name_en: 'Name', leader_en: 'Leader') }
+    let(:params) { { id: kingdom.id, kingdom: { title_en: 'Queen', name_en: 'New Name', leader_en: 'New Leader' } } }
+
+    it "updates game_set kingdom's title" do
+      expect { send_request }.to change { kingdom.reload.title_en }.from('King').to('Queen')
+    end
+
+    it "updates game_set kingdom's name" do
+      expect { send_request }.to change { kingdom.reload.name_en }.from('Name').to('New Name')
+    end
+
+    it "updates game_set kingdom's leader" do
+      expect { send_request }.to change { kingdom.reload.leader_en }.from('Leader').to('New Leader')
     end
   end
-  describe 'GET #index' do
-    let(:kingdoms) { create_list(:kingdom, 3) }
-    let(:space_kingdom) { create(:kingdom, name_en: 'Space') }
-    let!(:vassal) { create(:kingdom, sovereign: space_kingdom) }
-    before { get :index, format: :js }
-
-    it 'populates an array of all kingdoms' do
-      expect(assigns(:kingdoms)).to match_array(kingdoms.concat([space_kingdom, vassal]))
-    end
-
-    it "populates an array of all Kingdom Space's vassals" do
-      expect(assigns(:allies_ids)).to match_array([vassal.id])
-    end
-  end
-
   describe 'POST #reset_alliances' do
-    let!(:messages) { create_list(:message, 5) }
-    let!(:sovereign) { create(:kingdom, ruler: true) }
-    let!(:vassals) { create_list(:kingdom, 3, sovereign: sovereign) }
+    let(:game_set) { create(:game_set) }
+    let!(:messages) { create_list(:message, 5, sender: player) }
+    let!(:player) { create(:kingdom, ruler: true, game_set: game_set, game: game_set) }
+    let!(:vassals) { create_list(:kingdom, 3, sovereign: player, game_set: game_set) }
+    let!(:another_message) { create(:message, sender: another_player) }
+    let!(:another_player) { create(:kingdom, ruler: true) }
 
-    subject { post :reset_alliances }
+    subject(:send_request) { post :reset_alliances, params: { id: game_set.id } }
 
-    it 'destroys all messages' do
-      expect { subject }.to change(Message, :count).from(5).to(0)
+    it 'destroys all messages in this game_set' do
+      expect { send_request }.to change(player.sent_messages, :count).from(5).to(0)
     end
 
-    it 'nullifies sovereign_id for all kingdoms' do
-      expect { subject }.to change { Kingdom.all.pluck(:sovereign_id).compact.uniq }.from([sovereign.id]).to([])
+    it 'nullifies sovereign_id for all game_set kingdoms' do
+      expect { send_request }.to change { game_set.kingdoms.pluck(:sovereign_id).compact.uniq }.from([player.id]).to([])
     end
 
-    it 'nullifies ruler field for all kingdoms' do
-      expect { subject }.to change { sovereign.reload.ruler }.from(true).to(false)
+    it 'nullifies ruler field for all game_set kingdoms' do
+      expect { send_request }.to change { player.reload.ruler }.from(true).to(false)
+    end
+
+    it "doesn't affect another game_set player" do
+      expect { send_request }.not_to change { another_player.reload.ruler } # rubocop:disable Lint/AmbiguousBlockAssociation
+    end
+
+    it "doesn't affect another game_set messages" do
+      expect { send_request }.not_to change(another_player.sent_messages, :count)
     end
   end
 
   describe 'POST #reset_kingdoms' do
-    let!(:messages) { create_list(:message, 5) }
-    let!(:sovereign) { create(:kingdom, ruler: true) }
-    let!(:vassals) { create_list(:kingdom, 9, sovereign: sovereign) }
+    let(:game_set) { create(:game_set) }
+    let!(:messages) { create_list(:message, 5, sender: player) }
+    let!(:player) { create(:kingdom, ruler: true, game_set: game_set, game: game_set) }
+    let!(:vassals) { create_list(:kingdom, 6, sovereign: player, game_set: game_set) }
+    let!(:another_message) { create(:message, sender: another_player) }
+    let!(:another_player) { create(:kingdom, ruler: true) }
 
-    subject { post :reset_kingdoms, format: :js }
+    subject(:send_request) { post :reset_kingdoms, params: { id: game_set.id }, format: :js }
 
-    it 'destroys all messages' do
-      expect { subject }.to change(Message, :count).from(5).to(0)
+    it 'destroys all messages in this game_set' do
+      expect { send_request }.to change(player.sent_messages, :count).from(5).to(0)
     end
 
     it 'destroys old kingdoms' do
-      subject
-      expect(Kingdom.find_by(id: sovereign.id)).to be nil
+      expect { send_request }.to change { game_set.game_kingdoms.include?(vassals.sample) }.from(true).to(false)
     end
 
-    it 'creates new kingdoms from Great Houses' do
-      expect { subject }.to change { Kingdom.count }.to(6)
+    it 'creates new kingdoms set for game_set' do
+      expect { send_request }.not_to change { game_set.kingdoms.count } # rubocop:disable Lint/AmbiguousBlockAssociation
     end
 
-    it 'populates an array of all kingdoms' do
-      subject
-      expect(assigns(:kingdoms)).to match_array(Kingdom.all)
+    it 'populates an array of all game_set game_kingdoms' do
+      send_request
+      expect(assigns(:kingdoms)).to match_array(game_set.game_kingdoms)
+    end
+
+    it "doesn't affect another game_set messages" do
+      expect { send_request }.not_to change(another_player.sent_messages, :count)
     end
   end
 end

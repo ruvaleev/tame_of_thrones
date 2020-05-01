@@ -17,13 +17,19 @@ RSpec.describe Kingdom do
     should have_many(:received_messages).class_name('Message').with_foreign_key('receiver_id')
                                         .inverse_of(:receiver).dependent(:nullify)
   end
-  it { should validate_uniqueness_of(:name_en) }
-  it { should validate_uniqueness_of(:name_ru) }
-  it { should validate_uniqueness_of(:emblem_en) }
-  it { should validate_uniqueness_of(:emblem_ru) }
-  it { should validate_uniqueness_of(:ruler).allow_blank }
+  it { should belong_to(:game_set).optional }
+  it { should belong_to(:game).inverse_of(:player).optional }
+
+  it { should validate_uniqueness_of(:name_en).scoped_to(:game_set_id) }
+  it { should validate_uniqueness_of(:name_ru).scoped_to(:game_set_id) }
+  it { should validate_presence_of(:name_en) }
+  it { should validate_presence_of(:name_ru) }
+  it { should validate_uniqueness_of(:emblem_en).scoped_to(:game_set_id) }
+  it { should validate_uniqueness_of(:emblem_ru).scoped_to(:game_set_id) }
+  it { should validate_uniqueness_of(:ruler).scoped_to(:game_set_id).allow_blank }
   it { should validate_presence_of(:leader_en) }
   it { should validate_presence_of(:leader_ru) }
+  it { should validate_presence_of(:game_set_id) }
   it { should validate_inclusion_of(:title_en).in_array(%w[King Queen]) }
   it { should validate_inclusion_of(:title_ru).in_array(%w[Король Королева]) }
 

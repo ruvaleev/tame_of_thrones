@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class MessagesController < ApplicationController
-  before_action :find_sender
   before_action :find_receiver
+  before_action :find_sender
 
   def create
     response, message, new_king = @sender.ask_for_allegiance(@receiver, params[:body])
@@ -24,8 +24,7 @@ class MessagesController < ApplicationController
   private
 
   def find_sender
-    sender_id = params[:sender_id] || Kingdom.find_by(name_en: 'Space').id
-    @sender = Kingdom.find(sender_id)
+    @sender = @receiver.game_set.player
   end
 
   def find_receiver
