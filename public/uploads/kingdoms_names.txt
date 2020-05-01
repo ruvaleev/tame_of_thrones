@@ -1,0 +1,41 @@
+Астапор, Astapor
+Барроутон, Barrowton
+Белая Гавань, White Harbor
+Браавос, Braavos
+Вeйес Дотрак, Vaes Dothrak
+Волантис, Volantis
+Валисар, Valysar
+Вендский городок, Wendish Town
+Волон Тхерис, Volon Therys
+Грачиный Приют, Rook's Rest
+Дощатый город, Planky Town
+Древняя Валирия, Old Valyria
+Кварт, Qarth
+Квохор, Qohor
+Королевская Гавань, King's Landing
+Ланниспорт, Lannisport
+Лис, Lys
+Лорат, Lorath
+Лордспорт, Lordsport
+Мантарис, Mantarys
+Мир, Meereen
+Миэрин, Myr    
+Ни Сар, Ny Sar
+Новый Гис, New Ghis
+Норвос, Norvos
+Орос, Oros
+Пентос, Pentos
+Сар Мелл, Sar Mell
+Сатар, Sathar
+Старый Гис, Old Ghis
+Старомест, Oldtown
+Систертон, Sisterton
+Солнечное копье, Sunspear
+Тирош, Tyrosh
+Толос, Tolos
+Уикендон, Wickendon
+Чаячий город, Gulltown
+Элирия, Elyria
+Эшфорд, Ashford
+Юнкай, Yunkai
+Порт-Иббен, Port of Ibben

@@ -1,8 +1,8 @@
 en:
   choose_allies: 'CHOOSE YOUR ALLIES'
   and_conquer_southerost: 'AND SEIZE POWER'
-  rules_first_part: 'There is no ruler in the universe of Southeros and pandemonium reigns. Shan, the gorilla king of the Space kingdom wants to rule all Six Kingdoms in the universe of Southeros. He needs the support of 3 more kingdoms to be the ruler.'
-  rules_second_part: 'Each kingdom has an animal emblem and Shan needs to send a message with the animal in the message to win them over.'
+  rules_first_part: 'There is no ruler in the universe of Southeros and pandemonium reigns. %{leader}%, leader of the %{kingdom}% Kingdom wants to rule all Six Kingdoms in the universe of Southeros. To be the ruler, you need the support at least 3 more Kingdoms.'
+  rules_second_part: "Each Kingdom has an animal emblem and %{title}% %{leader}% needs to send a message with the animal in the message to win them over (the letters order doesn't matter)."
   reload: 'Reload'
   reset: 'Reset'
   kingdom: 'Kingdom'
@@ -10,7 +10,7 @@ en:
   congratulations_second: 'Now the enemies of the %{kingdoms_name}% Kingdom have to bend their knee or to be destroyed'
   start: 'Start'
   loading: 'Loading'
-  kingdoms:
+  game_sets:
     preload:
       instructions_html: "<div class='instructions'>
                             <h4>The Goal:</h4>

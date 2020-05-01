@@ -7,11 +7,13 @@ feature 'Reset alliances', '
   As User
   I want to reset every alliance and nullify play field
 ' do
-  let!(:sender_kingdom) { create(:kingdom, name_en: 'Space') }
-  let!(:kingdom_receiver) { create(:kingdom) }
+  let(:game_set) { create(:game_set) }
+  let(:game_kingdoms) { create_list(:kingdom, 6, game_set: game_set) }
+  let!(:player) { create(:player, game: game_set) }
+  let!(:kingdom_receiver) { game_kingdoms.sample }
   let(:correct_message) { correct_message_to(kingdom_receiver) }
 
-  before { enter_game(sleep_timer: 0.5) }
+  before { enter_game(sleep_timer: 0.4, game_set_uid: game_set.uid) }
 
   context 'when reset', js: true do
     before do
@@ -22,7 +24,8 @@ feature 'Reset alliances', '
     context 'alliances' do
       before { find('#reset_button').click }
       scenario 'sender kingdom have no vassals' do
-        expect(sender_kingdom.vassals).to eq []
+        sleep(0.1)
+        expect(player.vassals).to eq []
       end
 
       scenario 'receiver kingdom have no sovereign' do

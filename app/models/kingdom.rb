@@ -11,24 +11,25 @@ class Kingdom < ApplicationRecord
     has_many :received_messages, foreign_key: 'receiver_id', inverse_of: :receiver, dependent: :nullify
   end
 
-  validates :name_en, uniqueness: true
-  validates :name_ru, uniqueness: true
-  validates :emblem_en, uniqueness: true
-  validates :emblem_ru, uniqueness: true
+  with_options uniqueness: { scope: :game_set_id } do
+    validates :name_en
+    validates :name_ru
+    validates :emblem_en
+    validates :emblem_ru
+    validates :ruler, allow_blank: true
+  end
+  validates :name_en, presence: true
+  validates :name_ru, presence: true
   validates :leader_en, presence: true
   validates :leader_ru, presence: true
+  validates :game_set_id, presence: true
   validates :title_en, inclusion: { in: %w[King Queen] }
   validates :title_ru, inclusion: { in: %w[Король Королева] }
-  validates :ruler, uniqueness: true, allow_blank: true
 
-  GREAT_HOUSES = [
-    { name_en: 'Space', name_ru: 'Простор', emblem_en: 'Gorilla', emblem_ru: 'Горилла' },
-    { name_en: 'Land', name_ru: 'Земля', emblem_en: 'Panda', emblem_ru: 'Панда' },
-    { name_en: 'Water', name_ru: 'Вода', emblem_en: 'Octopus', emblem_ru: 'Осьминог' },
-    { name_en: 'Ice', name_ru: 'Лед', emblem_en: 'Mammoth', emblem_ru: 'Маммонт' },
-    { name_en: 'Air', name_ru: 'Воздух', emblem_en: 'Owl', emblem_ru: 'Сова' },
-    { name_en: 'Fire', name_ru: 'Огонь', emblem_en: 'Dragon', emblem_ru: 'Дракон' }
-  ].freeze
+  TITLES = {
+    en: %w[King Queen],
+    ru: %w[Король Королева]
+  }.freeze
 
   MINIMUM_FOR_VICTORY = 3
 

@@ -1,35 +1,36 @@
 # frozen_string_literal: true
 
 class KingdomsController < ApplicationController
-  protect_from_forgery except: :index
+  protect_from_forgery except: :update
 
-  def preload; end
+  before_action :find_game_set, except: :update
 
-  def index
-    find_all_kingdoms
-    @allies_ids = Kingdom.find_by(name_en: 'Space').try(:vassals).try(:pluck, :id)
+  def update
+    @kingdom = Kingdom.find(params[:id])
+    @kingdom.update(kingdoms_params)
   end
 
   def reset_alliances
-    Message.destroy_all
-    Kingdom.all.update(sovereign_id: nil, ruler: false)
+    @game_set.player.sent_messages.destroy_all
+    @game_set.kingdoms.update(sovereign_id: nil, ruler: false)
     render json: { head: :ok }
   end
 
   def reset_kingdoms
-    ReinitializeKingdoms.run
+    @game_set.player.sent_messages.destroy_all
+    @game_set.game_kingdoms.destroy_all
+    @game_set.create_game_kingdoms
+    @kingdoms = @game_set.game_kingdoms
     @allies_ids = []
-    @space_kingdom_id = Kingdom.find_by(name_en: 'Space').id
-    find_all_kingdoms
   end
 
   private
 
-  def find_all_kingdoms
-    @kingdoms = Kingdom.all
+  def find_game_set
+    @game_set = GameSet.find(params[:id])
   end
 
-  def receiver
-    Kingdom.find(params[:receiver_id])
+  def kingdoms_params
+    params.require(:kingdom).permit(:name_en, :name_ru, :title_en, :title_ru, :leader_en, :leader_ru)
   end
 end

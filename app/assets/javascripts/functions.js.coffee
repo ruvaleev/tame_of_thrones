@@ -173,7 +173,7 @@
   
   selectCircleCell($(emblem).data('index'), 'green', 0) for emblem in $('#circle img.emblem[data-ally="true"]')
 
-@resetAllies = () ->
+@resetAllies = (game_set_id) ->
   audio.play('sounds/gong.mp3')
   unselectCircleCells('green', 1000)
   closeDialogue()
@@ -183,6 +183,9 @@
     dataType: 'json',
     beforeSend: (xhr) -> 
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+    data: {
+      id: game_set_id
+    }
 
 @toggleSounds = () ->
   $('.sounds_on').toggle()
@@ -196,8 +199,8 @@
       audio.autoplay = true
 
 @greetNewKing = (kings_name, kingdoms_name) ->
-  $('p.congratulations.top').html($('p.congratulations.top').html().replace('%{kings_name}%', kings_name))
-  $('p.congratulations.bottom').html($('p.congratulations.bottom').html().replace('%{kingdoms_name}%', kingdoms_name))
+  $('p.congratulations.top').html($('p.congratulations.top').html().split('%{kings_name}%').join(kings_name))
+  $('p.congratulations.bottom').html($('p.congratulations.bottom').html().split('%{kingdoms_name}%').join(kingdoms_name))
   $('p.congratulations.top').fadeIn()
   $('p.congratulations.bottom').fadeIn()
   frame = document.getElementById('central_frame')
@@ -208,7 +211,7 @@
   elem = document.getElementById('throne_is_taken');
   closeByClick(elem)
 
-@resetKingdoms = (locale) ->
+@resetKingdoms = (game_set_id, locale) ->
   audio.play('sounds/gong.mp3')
   unselectCircleCells('green', 1000)
   closeDialogue()
@@ -220,6 +223,7 @@
     beforeSend: (xhr) -> 
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
     data: {
+      id: game_set_id,
       locale: locale
     }
 @closeDialogue = () ->
@@ -255,3 +259,19 @@
   setTimeout ->
     $('img.circle').removeClass('finish_rotating')
   ,1000
+
+@clenchUnclench = (elem) ->
+  elem.animate({
+    width: '10%',
+    height: '10%',
+    marginLeft: '3%',
+    marginTop: '3%'
+    }, { duration: 100, complete: unclench(elem) })
+
+@unclench = (elem) ->
+  elem.animate({
+    width: '8%',
+    height: '8%',
+    marginLeft: '4%',
+    marginTop: '4%'
+    }, 100)

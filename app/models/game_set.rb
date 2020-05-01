@@ -6,4 +6,15 @@ class GameSet < ApplicationRecord
 
   validates :uid, uniqueness: true
   validates :uid, presence: true
+
+  def game_kingdoms
+    kingdoms.where(game: nil)
+  end
+
+  def create_game_kingdoms
+    return if game_kingdoms.size.eql?(6)
+
+    game_kingdoms.destroy_all
+    6.times { CreateKingdom.new(id).run }
+  end
 end

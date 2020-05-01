@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :kingdom, class: 'Kingdom' do
+  factory :kingdom do
+    association :game_set
     sequence :name_en do |n|
       "Kingdom_name_#{n}"
     end
@@ -20,6 +21,10 @@ FactoryBot.define do
     leader_ru { generate_name_ru(title_en) }
     emblem_avatar { 'support/test_image.png' }
     leader_avatar { 'support/test_image.png' }
+  end
+
+  factory :player, parent: :kingdom do
+    game { game_set }
   end
 end
 

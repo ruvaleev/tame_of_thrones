@@ -11,8 +11,8 @@
     p = I18n.t('.rules_first_part')
     p = I18n.t('.rules_second_part')
   .buttons
-    = button_tag(I18n.t('.reload'), id: 'reload_button', data: { locale: I18n.locale })
-    = button_tag(I18n.t('.reset'), id: 'reset_button')
+    = button_tag(I18n.t('.reload'), id: 'reload_button', data: { game_set_id: @game_set.id, locale: I18n.locale })
+    = button_tag(I18n.t('.reset'), id: 'reset_button', data: { game_set_id: @game_set.id })
   .tunes
     = image_tag('tunes_orange.png', class: 'tunes_icon', id: 'tunes')
     = render 'shared/sounds_panel', color: 'orange', immediately: true
@@ -44,7 +44,7 @@
     = image_tag('center_throne.png', class: 'center center_background')
     - %w[blue orange red green].each do |color|
       = image_tag("#{color}_light_cell.png", class: 'light_cell', id: "#{color}_light_cell", style: 'display: none')
-  = render 'kingdoms'
+  = render 'kingdoms/kingdoms'
 
 = audio_tag('main_theme.mp3', autoplay: false, controls: true, loop: true, class: 'hidden', id: 'music')
 = audio_tag('throne_is_mine.mp3', autoplay: false, controls: true, loop: true, class: 'hidden', id: 'final_music')

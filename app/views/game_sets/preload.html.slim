@@ -1,4 +1,7 @@
 .preload
+  .form
+    = render 'player_form'
+
   = image_tag("paper.jpg", id: 'paper_instruction')
   = image_tag('instructions_icons.png', id: 'instructions_icons_image')
   = image_tag('instructions_buttons.png', id: 'instructions_buttons_image')
@@ -18,4 +21,10 @@
 .container
 
 javascript:
-  load_application("#{I18n.locale}")
+  locale = "#{I18n.locale}"
+  load_application("#{@game_set.id}", locale)
+  $('.start_button').on('click', function(){
+    update_player(locale)
+    if ($('.preload .music_on').is(':visible')) { turnMusic() }
+    $('.preload').fadeOut()
+  })

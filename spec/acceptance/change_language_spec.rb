@@ -42,7 +42,7 @@ feature 'Change language', '
     expect(page).not_to have_css('.lang_panel', visible: true)
   end
   scenario "after click on 'tunes' button lang_panel is shown", js: true do
-    enter_game
+    enter_game(sleep_timer: 0.1)
     find('#tunes').click
     expect(page).to have_css('.lang_panel', visible: true)
   end
