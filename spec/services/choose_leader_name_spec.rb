@@ -21,11 +21,11 @@ RSpec.describe ChooseLeaderName do
   it 'looking for uniq names in scope of game set' do
     kingdom_in_game_set
     allow(File).to receive(:read).and_return(existing_names)
-    expect { Timeout.timeout(0.01) { run_service } }.to raise_error(Timeout::Error)
+    expect { Timeout.timeout(0.1) { run_service } }.to raise_error(Timeout::Error)
   end
   it 'allows non uniq names in different game sets' do
     kingdom_in_another_game_set
     allow(File).to receive(:read).and_return(existing_names)
-    expect { Timeout.timeout(0.01) { run_service } }.not_to raise_error(Timeout::Error)
+    expect { Timeout.timeout(0.1) { run_service } }.not_to raise_error(Timeout::Error)
   end
 end

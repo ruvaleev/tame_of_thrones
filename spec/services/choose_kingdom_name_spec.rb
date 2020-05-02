@@ -20,11 +20,11 @@ RSpec.describe ChooseKingdomName do
   it 'looking for uniq names for current game_set' do
     kingdom_for_this_game_set
     allow(File).to receive(:read).and_return(existing_names)
-    expect { Timeout.timeout(0.01) { run_service } }.to raise_error(Timeout::Error)
+    expect { Timeout.timeout(0.1) { run_service } }.to raise_error(Timeout::Error)
   end
   it 'allows not uniq names for different game_sets' do
     kingdom_for_another_game_set
     allow(File).to receive(:read).and_return(existing_names)
-    expect { Timeout.timeout(0.01) { run_service } }.not_to raise_error(Timeout::Error)
+    expect { Timeout.timeout(0.1) { run_service } }.not_to raise_error(Timeout::Error)
   end
 end
