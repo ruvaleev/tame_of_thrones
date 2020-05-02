@@ -3,3 +3,20 @@ What does %{receiver_title}% %{receiver_king}% want?
 %{sender_title}% %{sender_king}% listens. You're from %{receiver_name}%, aren't you?
 Come in, settle down, speak...
 You? Again? Speak.
+North remembers.
+Not only Lannister always pays his debts. Don't forget about it.
+The night is dark and full of terrors, %{receiver_title}% %{receiver_king}%.
+Never forget what you are, %{receiver_king}%. The rest of the world will not.
+Seven Hells! You again?
+The man who fears losing has already lost, %{receiver_title}% %{receiver_king}%.
+There is no creature on earth half so terrifying as a truly just man. %{sender_name}% honors justice.
+I swear to you, {receiver_king}%, sitting a throne is a thousand times harder than winning one.
+A mind needs books like a sword needs a whetstone. Although, I don't think you can realize it, %{receiver_title}% %{receiver_name}%.
+We've had vicious kings and we've had idiot kings, but I don't know if we've ever been cursed with a vicious idiot ruler...
+It’s hard to put a leash on a dog once you’ve put a crown on its head.
+A true ruler does what he will, not what he must.
+Let me give you some advice, %{receiver_title}% %{receiver_name}%. Never forget what you are. The rest of the world will not.
+Distrusting me was the wisest thing you’ve done since you climbed off your horse, %{receiver_name}%.
+Only a man who's been burned knows what hell is truly like. I know it, %{receiver_name}%.
+The contents of a man’s letters are more valuable than the contents of his purse, %{receiver_name}%.
+A lion doesn't concern himself with the opinions of the sheep.

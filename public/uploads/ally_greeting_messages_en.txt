@@ -3,3 +3,18 @@ Oooh, %{receiver_title}% %{receiver_king}%, old friend! Nice to meet you! How is
 Greetings from the %{sender_title}% %{sender_king}%! You're welcome!
 Come in and settle down, %{sender_title}% %{receiver_king}%. Friends above all!
 Nice to greet you, %{sender_title}% %{receiver_king}%. It's always good to be with old friends.
+One of our friends says "I'm the God of Tits and Wine". Do you know him?
+Everything's better with some wine in the belly. %{sender_name}% has it in abundance, would you like to join me?
+Some are brave, and some are cute. Come in, my friend.
+Fear cuts deeper than swords. Together %{receiver_name}% and %{sender_name}% have nothing to fear.
+Some doors close forever, others open in most unexpected places, %{receiver_title}% %{receiver_king}%.
+Different roads sometimes lead to the same castle.
+They hate you because you act like you're better than they are.
+You are an honest and honorable %{receiver_title}%...Ofttimes I forget that. I have met so few of them in my life.
+Everyone who isn't us is an enemy, my dear %{receiver_king}%.
+The man who fears losing has already lost. We have nothing to fear, dear %{receiver_king}%.
+Don’t tell anyone, I have a reputation to maintain.
+I swear to you %{receiver_title}% %{receiver_king}%, sitting a throne is a thousand times harder than winning one.
+A %{receiver_title}% must learn that sometimes words can accomplish what swords cannot.
+The world was full of cravens who pretended to be heroes; it took a queer sort of courage to admit to cowardice...
+Why is it that when one man builds a wall, the next man immediately needs to know what's on the other side?

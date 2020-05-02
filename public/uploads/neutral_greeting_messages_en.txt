@@ -3,3 +3,20 @@ In these difficult times every ally counts. How many allies Kingdom %{receiver_n
 Sit down please. %{sender_title}% %{sender_king}% welcomes any guest of %{sender_name}% Kingdom.
 Come in, settle down, how can we help you, %{receiver_title}% %{receiver_king}%?
 Nice to greet you, %{receiver_title}% %{receiver_king}%.
+Winter is coming, %{receiver_name}%. Winter is coming.
+Valar Morghulis.
+What Is Dead May Never Die.
+You know nothing %{receiver_king}%.
+Chaos is a ladder. %{sender_name}% can manage chaos, can %{receiver_name}%?
+When you play the game of thrones, you win or you die, %{receiver_title}% %{receiver_king}%.
+It’s not easy being drunk all the time. If it were easy, everyone would do it. Wouldn't you %{receiver_king}%?
+Nothing isn’t better or worse than anything. Nothing is just nothing. Welcome, %{receiver_title}% %{receiver_king}%.
+There is no justice in this world. Not unless we make it.
+The Lord of Light wants his enemies burned, The Drowned God wants them drowned. Why are all the Gods such vicious cunts? Where is the God of tits and wine?
+Brothels make a much better investment than ships I’ve found. Whores rarely sink. %{receiver_name}% has enough brothels?
+Death is so terribly final, while life is full of possibilities.
+A mind needs books like a sword needs a whetstone. Do you like reading, %{receiver_title}% %{receiver_king}%?
+Start trying to work out who deserves what and before long you'll spend the rest of your days weeping for each and every person in the world.
+The powerful have always preyed on the powerless. That’s how they became powerful in the first place.
+The contents of a man’s letters are more valuable than the contents of his purse.
+Fear cuts deeper than swords, %{receiver_title}% %{receiver_king}%

@@ -3,3 +3,18 @@
 In the name of %{sender_title}% %{sender_king}%, %{receiver_name}% Kingdom can count on us.
 We gonna be good allies, %{receiver_king}% %{receiver_king}%.
 Kingdoms %{sender_name}% and %{receiver_name}% are friends, now and forever!
+Politics is the art of compromise, %{receiver_title}% %{receiver_king}%. And %{receiver_name}% has this art.
+We only make peace with our enemies, my lord. That's why it's called "making peace". 
+Some doors close forever, others open in most unexpected places, %{receiver_title}% %{receiver_king}%. Our door is always open to you.
+I choose my allies carefully, and my enemies more carefully still.
+Our enemies summoned us to King's Landing, I'll go to King's Landing. But not alone. Call the banners! 
+You think I'm fighting this war so they'll sing songs about me?
+How can I call myself %{sender_title}% If I can't hold my own castle? 
+We will all be together %{receiver_title}% %{receiver_king}%. I promise!
+I was raised to be %{sender_title}% of %{sender_name}%. And I'm glad to be your ally, %{receiver_title}% %{receiver_king}%.
+People learn to love their chains. Lets break it together, %{receiver_title}% %{receiver_king}%.
+A king who runs will not be king for long. Our enemies will run.
+The only way to keep the small folk loyal is to make certain they fear you more than they do the enemy. %{sender_name}% folk is loyal to me, my friend. And I am loyal to you.
+A good %{sender_title}% knows when to save his strength… and when to destroy his enemies.
+Those are brave men knocking at our door. Let’s go kill them.
+Some people are fortunate enough to be born into the right family. Others have to find their own way.

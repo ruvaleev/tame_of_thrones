@@ -3,3 +3,18 @@ Going to have to pretend We didn't hear that. %{sender_name}% Kingdom will never
 %{sender_title}% %{sender_king}% will be furious, if I'll pass the request up to him. Tell to King %{receiver_king}% we refuse!
 Stop talking nonsense!
 Nonsense!
+Money buys a man’s silence for a time. A bolt in the heart buys it forever. Remember it %{receiver_title}% %{receiver_king}%.
+%{receiver_title}% %{receiver_king}%, you are surrounded by flatterers and fools. It can drive a man to madness,.. . Half of them don’t dare tell you the truth, and the other half can’t find it.
+Never forget what you are, %{receiver_king}%. Wear it like armor, and it can never be used to hurt you.
+Stupidity and despair — these two concepts are extremely difficult to distinguish from each other.
+A man with no motive is a man no one suspects. Goodbye, %{receiver_king}%.
+Money buys a man’s silence for a time. A bolt in the heart buys it forever.
+I’m not questioning your honor, %{receiver_title}% %{receiver_king}%. I’m denying its existence.
+A stupid saying. What we don’t know is usually what gets us killed.
+The Gods have no mercy, that’s why they’re Gods. Get Out.
+Monsters are dangerous and just now kings are dying like flies. Be careful, %{receiver_title}% %{receiver_king}%.
+I will hurt you for this. A day will come when you think you are safe and happy, and your joy will turn to ashes in your mouth. And you will know the debt is paid.
+There is only one God and his name is Death. And there is only one thing we say to Death: “not today”.
+Sometimes it is better to answer injustice with mercy. I, %{sender_title}% %{sender_king}%, will answer injustice with justice.
+Power resides where men believe it resides. It's a trick, a shadow on the wall. And a very small man can cast a very large shadow
+The world is built by killers, %{receiver_king}%. Get out and look around.
